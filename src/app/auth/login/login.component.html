@@ -1,1 +1,57 @@
-<p>login works!</p>
+<div class="container">
+    <div class="image-bg">
+        <img [src]="backgroundImage" alt="login-image">
+    </div>
+    <div class="login-container">
+        <div class="header">
+            <img [src]="logo" alt="logo">
+            <h2>Log into your account</h2>
+            <p>Welcome back! Please enter your credentials</p>
+        </div>
+
+        <form class="form-group" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+            <div class="form-control">
+                <label for="email">Email <span>*</span></label>
+                <input 
+                    type="email" 
+                    placeholder="Enter your email" 
+                    formControlName="email"
+                    required
+                    id="email"
+                >
+                <div 
+                    class="error"
+                    *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)"
+                >
+                    <div *ngIf="loginForm.get('email')?.errors?.['required']">email is required</div>
+                    <div *ngIf="loginForm.get('email')?.errors?.['email']">invalid email</div>
+                </div>
+            </div>
+            <div class="form-control passsword">
+                <label for="password">Password <span>*</span></label>
+                <input 
+                    type="{{showPassword ? 'text' : 'password'}}" 
+                    placeholder="Enter your password" 
+                    formControlName="password"
+                    required
+                    id="password"
+                >
+                <div class="eye-icon" (click)="toggleShowPassword()">
+                    <img src="{{ showPassword ? eyeOpen : eyeClose}}" alt="eye-icon">
+                </div>
+                <div 
+                    class="error"
+                    *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)"
+                >
+                    <div *ngIf="loginForm.get('password')?.errors?.['required']">password is required</div>
+                    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">password is not strong enough</div>
+                </div>
+            </div>
+            <button type="submit">Login</button>
+            <p>
+                Don't have an account? 
+                <span routerLink="/auth/register">Register</span>
+            </p>
+        </form>
+    </div>
+</div>
