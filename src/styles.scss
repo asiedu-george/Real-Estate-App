@@ -15,6 +15,7 @@
 html {
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
+    letter-spacing: 0.025em;
 }
 
 img {
@@ -22,3 +23,8 @@ img {
     height: auto;
     max-width: 100%;
 }
+
+body {
+    background-color: var(--white);
+}
+
