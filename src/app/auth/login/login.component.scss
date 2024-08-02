@@ -4,6 +4,11 @@
     overflow: hidden;
     height: 100vh;
 
+    .loading {
+        color: #fff;
+        font-size: 1.25rem;
+    }
+
     .image-bg {
         background-color: #1A1A1A;
         height: 100%; 
@@ -127,7 +132,7 @@
 
             p {
                 color: #667085;
-                font-size: 0.75rem;
+                font-size: 0.875rem;
                 text-align: center;
 
                 span {
