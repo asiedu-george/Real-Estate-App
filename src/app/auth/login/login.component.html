@@ -1,4 +1,14 @@
 <div class="container">
+    <ngx-spinner
+            bdColor="rgba(0, 0, 0, 0.8)"
+            size="large"
+            color="#fff"
+            type="line-scale-pulse-out"
+            [fullScreen] = "true"
+            *ngIf="loading"
+        >
+            <p class="loading">Loading...</p>
+    </ngx-spinner>
     <div class="image-bg">
         <img [src]="backgroundImage" alt="login-image">
     </div>
@@ -30,14 +40,14 @@
             <div class="form-control passsword">
                 <label for="password">Password <span>*</span></label>
                 <input 
-                    type="{{showPassword ? 'text' : 'password'}}" 
+                    [type]="showPassword ? 'text' : 'password'" 
                     placeholder="Enter your password" 
                     formControlName="password"
                     required
                     id="password"
                 >
                 <div class="eye-icon" (click)="toggleShowPassword()">
-                    <img src="{{ showPassword ? eyeOpen : eyeClose}}" alt="eye-icon">
+                    <img [src]="showPassword ? eyeOpen : eyeClose" alt="eye-icon">
                 </div>
                 <div 
                     class="error"
