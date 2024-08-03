@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home/home.component';
 
+import { LandingPageRoutingModule } from './landing-page-routing.module';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -9,7 +10,8 @@ import { HomeComponent } from './home/home.component';
     HomeComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    LandingPageRoutingModule
   ]
 })
-export class LandingPageModule { } 
+export class LandingPageModule { }
