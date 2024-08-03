@@ -1,1 +1,23 @@
-<p>home works!</p>
+<div class="container">
+    <header>
+        <nav>
+            <a routerLink="">Home</a>
+            <a routerLink="#about_us">About us</a>
+            <a routerLink="#listing">Listing</a>
+            <a routerLink="#testimonial">Testimonial</a>
+        </nav>
+        <div class="image">
+            <img [src]="logo" alt="logo">
+        </div>
+        <div class="profile">
+            <span>
+                <img [src]="phoneIcon" alt="phoneIcon">
+                <p>054 4769087</p>
+            </span>
+            <div class="button">
+                <button type="button" routerLink="/auth/login" class="btn">Login</button>
+                <button type="button" routerLink="/auth/register" class="btn">Register</button>
+            </div>
+        </div>
+    </header>
+</div>
