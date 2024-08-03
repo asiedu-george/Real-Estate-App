@@ -26,4 +26,12 @@ img {
 
 body {
   background-color: var(--white);
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
 }/*# sourceMappingURL=styles.css.map */
