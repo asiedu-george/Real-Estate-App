@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LandingPageRoutingModule } from './landing-page-routing.module';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
+import { CarouselComponent } from '../shared/carousel/carousel.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     LandingPageRoutingModule,
-    RouterModule
+    RouterModule,
+    CarouselComponent
   ]
 })
 export class LandingPageModule { }
