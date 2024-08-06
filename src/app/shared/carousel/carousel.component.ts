@@ -1,14 +1,11 @@
-import { NgIf } from '@angular/common';
-import { Component, input, OnInit } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
-  standalone: true,
-  imports: [NgIf],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.scss'
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent {
   public images = input<string[]>([])
   public currentSlideIndex: number = 0
 
