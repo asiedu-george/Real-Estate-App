@@ -9,3 +9,10 @@
         transition: all 0.5s ease-in-out;
     }
 }
+
+@media screen and (max-width: 998px) {
+    img {
+        height: 100%;
+        object-fit: cover;
+    }
+}
