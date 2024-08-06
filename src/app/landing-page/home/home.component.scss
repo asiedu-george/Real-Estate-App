@@ -3,92 +3,94 @@
     align-items: center;
   }
   
-  .container {
-    max-width: 100%;
-    height: 100vh;
-    padding: 2rem 4%;
-    display: flex;
-    flex-direction: column;
-    background-image: url('https://img.freepik.com/free-photo/minimalist-black-interior-with-black-sofa_1268-31803.jpg?t=st=1722716176~exp=1722719776~hmac=f9fe088a550c76b30bab7ac041b70132069e2de1bec9a3a3e3658eb7b6e639a1&w=1380');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+.container {
+  max-width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
   
-    header {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      overflow: hidden;
-      background-color: #f9fafb;
-      border: none;
-      border-radius: 6.25rem;
-      height: 3.75rem;
-      padding: 0 2rem;
+    .home {
+      position: relative;
 
-      nav a {
-        display: inline-block;
-        padding: 0 10px;
-        margin: 0 10px;
-        cursor: pointer;
-        position: relative;
-        color: #1A1A1A;
-
-        &::after {
-            content: '';
-            width: 0;
-            height: 3px;
-            background: #1A1A1A;
-            position: absolute;
-            left: 0;
-            bottom: -10px;
-            display: inline-block;
-            transition: 0.5s ease-in-out;
-        }
-    
-        &:hover::after {
-            width: 100%;
-        }
-      }
-
-      .image {
-        max-width: 8.125rem;
-      }
+      header {
+        position: absolute;
+        top: 4%;
+        left: 3%;
+        width: 93%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        overflow: hidden;
+        background-color: #f9fafb;
+        border: none;
+        border-radius: 6.25rem;
+        height: 3.75rem;
+        padding: 0 2rem;
   
-      .profile {
-        @extend %common-profile-styles;
-        gap: 2rem;
+        nav a {
+          display: inline-block;
+          padding: 0 10px;
+          margin: 0 10px;
+          cursor: pointer;
+          position: relative;
+          color: #1A1A1A;
   
-        span {
-          @extend %common-profile-styles;
-          gap: 0.625rem;
-  
-          p {
-            color: #1A1A1A;
-            font-weight: 500;
+          &::after {
+              content: '';
+              width: 0;
+              height: 3px;
+              background: #1A1A1A;
+              position: absolute;
+              left: 0;
+              bottom: -10px;
+              display: inline-block;
+              transition: 0.5s ease-in-out;
+          }
+      
+          &:hover::after {
+              width: 100%;
           }
         }
-
-        .button {
+  
+        .image {
+          max-width: 8.125rem;
+        }
+    
+        .profile {
+          @extend %common-profile-styles;
+          gap: 2rem;
+    
+          span {
             @extend %common-profile-styles;
             gap: 0.625rem;
-
-            .btn {
-                background-color: transparent;
-                color: #1A1A1A;
-                padding: 0.625rem 2rem;
-                border: 1px solid #1A1A1A;
-                border-radius: 3.125rem;
-                cursor: pointer;
-                font-weight: 500;
-                transition: .3s ease-in-out;
-
-                &:hover {
-                    background-color: #1A1A1A;
-                    color: #fff;
-                    border: 1px solid #fff;
-                }
+    
+            p {
+              color: #1A1A1A;
+              font-weight: 500;
             }
+          }
+  
+          .button {
+              @extend %common-profile-styles;
+              gap: 0.625rem;
+  
+              .btn {
+                  background-color: transparent;
+                  color: #1A1A1A;
+                  padding: 0.625rem 2rem;
+                  border: 1px solid #1A1A1A;
+                  border-radius: 3.125rem;
+                  cursor: pointer;
+                  font-weight: 500;
+                  transition: .3s ease-in-out;
+  
+                  &:hover {
+                      background-color: #1A1A1A;
+                      color: #fff;
+                      border: 1px solid #fff;
+                  }
+              }
+          }
         }
       }
     }
