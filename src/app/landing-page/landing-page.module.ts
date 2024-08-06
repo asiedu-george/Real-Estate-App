@@ -4,11 +4,13 @@ import { LandingPageRoutingModule } from './landing-page-routing.module';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule,
