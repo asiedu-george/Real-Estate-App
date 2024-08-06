@@ -5,12 +5,14 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { AboutComponent } from './about/about.component';
+import { ListingComponent } from './listing/listing.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    ListingComponent
   ],
   imports: [
     CommonModule,
