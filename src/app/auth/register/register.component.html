@@ -1,0 +1,140 @@
+<div class="container">
+    <ngx-spinner
+            bdColor="rgba(0, 0, 0, 0.8)"
+            size="large"
+            color="#fff"
+            type="line-scale-pulse-out"
+            [fullScreen] = "true"
+            *ngIf="loading"
+        >
+            <p class="loading">Loading...</p>
+    </ngx-spinner>
+    <div class="image-bg">
+        <img [src]="backgroundImage" alt="login-image">
+    </div>
+    <div class="login-container">
+        <div class="header">
+            <img [src]="logo" alt="logo">
+            <h2>Create an account</h2>
+            <p>Join us today - create an account</p>
+        </div>
+
+        <form class="form-group" [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
+            <div class="form-control">
+                <label for="first_name">First name <span>*</span></label>
+                <input 
+                    type="text" 
+                    placeholder="Enter your first name" 
+                    formControlName="first_name"
+                    required
+                    id="first_name"
+                >
+                <div 
+                    class="error"
+                    *ngIf="registerForm.get('first_name')?.invalid && (registerForm.get('first_name')?.touched || registerForm.get('first_name')?.dirty)"
+                >
+                    <div *ngIf="registerForm.get('first_name')?.errors?.['required']">first name is required</div>
+                    <div *ngIf="registerForm.get('first_name')?.errors?.['invalidName']">must contain only alphabets</div>
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="last_name">Last name <span>*</span></label>
+                <input 
+                    type="text" 
+                    placeholder="Enter your last name" 
+                    formControlName="last_name"
+                    required
+                    id="last_name"
+                >
+                <div 
+                    class="error"
+                    *ngIf="registerForm.get('last_name')?.invalid && (registerForm.get('last_name')?.touched || registerForm.get('last_name')?.dirty)"
+                >
+                    <div *ngIf="registerForm.get('last_name')?.errors?.['required']">last name is required</div>
+                    <div *ngIf="registerForm.get('last_name')?.errors?.['invalidName']">must contain only alphabets</div>
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="email">Email <span>*</span></label>
+                <input 
+                    type="email" 
+                    placeholder="Enter your email" 
+                    formControlName="email"
+                    required
+                    id="email"
+                >
+                <div 
+                    class="error"
+                    *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)"
+                >
+                    <div *ngIf="registerForm.get('email')?.errors?.['required']">email is required</div>
+                    <div *ngIf="registerForm.get('email')?.errors?.['invalidEmail']">invalid email</div>
+                </div>
+            </div>
+            <div class="form-control passsword">
+                <label for="password">Password <span>*</span></label>
+                <input 
+                    [type]="showPassword ? 'text' : 'password'" 
+                    placeholder="Enter your password" 
+                    formControlName="password"
+                    required
+                    id="password"
+                >
+                <div class="eye-icon" (click)="toggleShowPassword()">
+                    <img [src]="showPassword ? eyeOpen : eyeClose" alt="eye-icon">
+                </div>
+                <div 
+                    class="error"
+                    *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)"
+                >
+                    <div *ngIf="registerForm.get('password')?.errors?.['required']">password is required</div>
+                    <div *ngIf="registerForm.get('password')?.errors?.['invalidPassword']">password is not strong enough</div>
+                </div>
+            </div>
+            <div formGroupName="additional_properties" class="additional_properties">
+                <div formGroupName="address">
+                    <div class="form-control">
+                        <label for="city">City <span>*</span></label>
+                        <input 
+                            type="text" 
+                            placeholder="Enter your city" 
+                            formControlName="city"
+                            required
+                            id="city"
+                        >
+                        <div 
+                            class="error"
+                            *ngIf="registerForm.get('city')?.invalid && (registerForm.get('city')?.touched || registerForm.get('city')?.dirty)"
+                        >
+                            <div *ngIf="registerForm.get('city')?.errors?.['required']">city is required</div>
+                            <div *ngIf="registerForm.get('city')?.errors?.['invalidName']">must contain only alphabets</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-control">
+                    <label for="profile_picture" class="profile">Profile picture <span>*</span></label>
+                    <input 
+                        type="file" 
+                        formControlName="profile_picture"
+                        required
+                        accept="image/*" 
+                        id="profile_picture"
+                        class="file"
+                    >
+                    <div 
+                        class="error"
+                        *ngIf="registerForm.get('profile_picture')?.invalid && (registerForm.get('profile_picture')?.touched || registerForm.get('profile_picture')?.dirty)"
+                    >
+                        <div *ngIf="registerForm.get('profile_picture')?.errors?.['required']">profile picture is required</div>
+                        <div *ngIf="registerForm.get('profile_picture')?.errors?.['invalidName']">must contain only alphabets</div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit">Register</button>
+            <p>
+                Already have an account? 
+                <span routerLink="/auth/login">Login</span>
+            </p>
+        </form>
+    </div>
+</div>

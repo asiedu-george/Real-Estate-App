@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="home">
+        <div class="carousel">
+            <app-carousel
+               [images]="[image_one, image_two, image_three, image_four]"
+            />
+        </div>
+        <header>
+            <nav>
+                <a routerLink="">Home</a>
+                <a routerLink="#about_us">About us</a>
+                <a routerLink="#listing">Listing</a>
+                <a routerLink="#testimonial">Testimonial</a>
+            </nav>
+            <div class="image">
+                <img [src]="logo" alt="logo">
+            </div>
+            <div class="profile">
+                <span>
+                    <img [src]="phoneIcon" alt="phoneIcon">
+                    <p>054 4769087</p>
+                </span>
+                <div class="button">
+                    <button type="button" routerLink="/auth/login" class="btn">Login</button>
+                    <button type="button" routerLink="/auth/register" class="btn">Get started</button>
+                </div>
+            </div>
+            <img [src]="menuIcon" class="menu" alt="hamburger-icon">
+        </header>
+
+        <div class="home-content">
+            <div class="guide">
+                <h5>enjoy the finest homes</h5>
+                <h2>find your dream home <br> with ease</h2>
+                <h6>Browse thousands of home listings, tailored to your preferences</h6>
+                <span class="browse">
+                    <a routerLink="/properties">Browse more properties</a>
+                    <img [src]="right_arrow" alt="right_arrow">
+                </span>
+            </div>
+        </div>
+        <div class="badge">
+            <span>
+                <h4>680</h4>
+                <h6>Award winning</h6>
+            </span>
+            <span>
+                <h4>8K+</h4>
+                <h6>Happy Customer</h6>
+            </span>
+            <span>
+                <h4>500+</h4>
+                <h6>Property Ready</h6>
+            </span>
+        </div>
+    </div>
+</div>

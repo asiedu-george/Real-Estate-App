@@ -15,10 +15,23 @@
 html {
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
+    letter-spacing: 0.025em;
 }
 
 img {
     display: block;
     height: auto;
     max-width: 100%;
+}
+
+body {
+    background-color: var(--white);
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
 }
