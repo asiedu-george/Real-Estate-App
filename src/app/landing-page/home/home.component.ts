@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -14,4 +14,14 @@ export class HomeComponent {
   public image_four: string = 'https://res.cloudinary.com/dhyqv69zh/image/upload/v1722945766/sunzboeyfbzlqqqrnnav.jpg'
   public right_arrow: string = 'https://res.cloudinary.com/dhyqv69zh/image/upload/v1722937536/cwprycg1fcsdwudixhtv.svg'
   public menuIcon: string = 'https://res.cloudinary.com/dhyqv69zh/image/upload/v1722942001/k7hfkhhwfsjy2jpn18qi.svg'
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(): void {
+    const header = document.getElementById('header')
+    if (window.scrollY > 0) {
+      header?.classList.add('scrolled')
+    } else {
+      header?.classList.remove('scrolled')
+    }
+  }
 }
