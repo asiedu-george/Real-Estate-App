@@ -6,13 +6,15 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { AboutComponent } from './about/about.component';
 import { ListingComponent } from './listing/listing.component';
+import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     AboutComponent,
-    ListingComponent
+    ListingComponent,
+    HowItWorksComponent
   ],
   imports: [
     CommonModule,
