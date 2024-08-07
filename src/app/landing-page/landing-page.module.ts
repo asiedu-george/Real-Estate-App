@@ -9,6 +9,7 @@ import { ListingComponent } from './listing/listing.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { DiscoverComponent } from './discover/discover.component';
 import { TestimonialComponent } from './testimonial/testimonial.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { TestimonialComponent } from './testimonial/testimonial.component';
     ListingComponent,
     HowItWorksComponent,
     DiscoverComponent,
-    TestimonialComponent
+    TestimonialComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
