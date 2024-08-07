@@ -1,10 +1,10 @@
+@import '../../../styles.scss';
+
 .about {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include justify-center;
     flex-direction: column;
     padding: 6% 0;
-    color: #1A1A1A;
+    color: $primary;
     gap: 2rem;
 
     .header {
@@ -24,9 +24,8 @@
         gap: 1.5rem;
 
         .content {
-            display: flex;
+            @include flex-center;
             flex-direction: column;
-            align-items: center;
             gap: 0.625rem;
 
             h5 {

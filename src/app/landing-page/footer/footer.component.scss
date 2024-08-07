@@ -1,16 +1,14 @@
+@import '../../../styles.scss';
+
 footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include justify-center;
     flex-direction: column;
     height: 6.25rem;
     position: relative;
 
     .footer-content {
         width: 60%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        @include justify-between;
 
         h6 {
             font-size: 0.875rem;

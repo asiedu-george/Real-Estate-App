@@ -1,11 +1,11 @@
+@import '../../../styles.scss';
+
 .featured {
+    @include justify-center;
     max-width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
     padding: 6% 10%;
-    color: #1A1A1A;
+    color: $primary;
     gap: 2rem;
 
     .header {
@@ -29,11 +29,10 @@
     }
 
     .listing-btn {
-        display: flex;
-        align-items: center;
+        @include flex-center;
         gap: 0.625rem;
-        background-color: #E7C873;
-        color: #1A1A1A;
+        background-color: $yellow;
+        color: $primary;
         padding: 0.625rem 1rem;
         border: none;
         border-radius: 3.125rem;
@@ -43,9 +42,9 @@
         transition: .3s ease-in;
 
         &:hover {
-            background-color: #1A1A1A;
-            color: #fff;
-            border: 2px solid #E7C873;
+            background-color: $primary;
+            color: $white;
+            border: 2px solid $yellow;
         }
 
         img {

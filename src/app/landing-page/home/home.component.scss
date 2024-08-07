@@ -1,7 +1,4 @@
-%common-profile-styles {
-    display: flex;
-    align-items: center;
-  }
+@import '../../../styles.scss';
   
 .container {
   max-width: 100%;
@@ -14,15 +11,13 @@
     height: 100vh;
 
     header {
+      @include justify-between;
       position: absolute;
       top: 3%;
       left: 3%;
       width: 93%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       overflow: hidden;
-      background-color: #f9fafb;
+      background-color: $header;
       border: none;
       border-radius: 6.25rem;
       height: 3.75rem;
@@ -31,20 +26,20 @@
 
       nav a {
         display: inline-block;
-        padding: 0 10px;
-        margin: 0 10px;
+        padding: 0 0.625rem;
+        margin: 0 0.625rem;
         cursor: pointer;
         position: relative;
-        color: #1A1A1A;
+        color: $primary;
 
         &::after {
             content: '';
             width: 0;
             height: 3px;
-            background: #1A1A1A;
+            background: $primary;
             position: absolute;
             left: 0;
-            bottom: -10px;
+            bottom: -0.625rem;
             display: inline-block;
             transition: 0.5s ease-in-out;
         }
@@ -59,37 +54,37 @@
       }
   
       .profile {
-        @extend %common-profile-styles;
+        @include flex-center;
         gap: 2rem;
   
         span {
-          @extend %common-profile-styles;
+          @include flex-center;
           gap: 0.625rem;
   
           p {
-            color: #1A1A1A;
+            color: $primary;
             font-weight: 500;
           }
         }
 
         .button {
-            @extend %common-profile-styles;
+            @include flex-center;
             gap: 0.625rem;
 
             .btn {
                 background-color: transparent;
-                color: #1A1A1A;
+                color: $primary;
                 padding: 0.625rem 2rem;
-                border: 1px solid #1A1A1A;
+                border: 1px solid $primary;
                 border-radius: 3.125rem;
                 cursor: pointer;
                 font-weight: 500;
                 transition: .3s ease-in-out;
 
                 &:hover {
-                    background-color: #1A1A1A;
-                    color: #fff;
-                    border: 1px solid #fff;
+                    background-color: $primary;
+                    color: $white;
+                    border: 1px solid $white;
                 }
             }
         }
@@ -119,7 +114,7 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        color: #fff;
+        color: $white;
 
         h5 {
           text-transform: uppercase;
@@ -144,7 +139,7 @@
           margin-top: 1rem;
 
           a {
-            color: #E7C873;
+            color: $yellow;
           }
         }
       }
@@ -159,8 +154,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      color: #1A1A1A;
-      background-color: #E7C873;
+      color: $primary;
+      background-color: $yellow;
       border: none;
       border-radius: 0 3.125rem 0 0;
 

@@ -1,9 +1,25 @@
-:root {
-    --white: #fff;
-    --primary: #1A1A1A;
-    --yellow: #E7C873;
-    --orange: #EB664E;
-    --secondary: #1F4B43;
+$white: #fff;
+$primary: #1A1A1A;
+$yellow: #E7C873;
+$orange: #EB664E;
+$secondary: #1F4B43;
+$header: #f9fafb;
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+}
+
+@mixin justify-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin justify-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 * {
@@ -25,7 +41,7 @@ img {
 }
 
 body {
-    background-color: var(--white);
+    background-color: $white;
 }
 
 a {
