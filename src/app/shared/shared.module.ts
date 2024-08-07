@@ -1,18 +1,25 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { ListingCardComponent } from './listing-card/listing-card.component';
 
 
 
 @NgModule({
   declarations: [
     SpinnerComponent,
-    CarouselComponent
+    CarouselComponent,
+    ListingCardComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    CurrencyPipe
   ],
-  exports: [CarouselComponent, SpinnerComponent]
+  exports: [
+    CarouselComponent, 
+    SpinnerComponent, 
+    ListingCardComponent
+  ]
 })
 export class SharedModule { }
