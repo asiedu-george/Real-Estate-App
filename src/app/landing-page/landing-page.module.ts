@@ -8,6 +8,7 @@ import { AboutComponent } from './about/about.component';
 import { ListingComponent } from './listing/listing.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { DiscoverComponent } from './discover/discover.component';
+import { TestimonialComponent } from './testimonial/testimonial.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { DiscoverComponent } from './discover/discover.component';
     AboutComponent,
     ListingComponent,
     HowItWorksComponent,
-    DiscoverComponent
+    DiscoverComponent,
+    TestimonialComponent
   ],
   imports: [
     CommonModule,
