@@ -1,0 +1,118 @@
+.listing-card {
+    max-width: 100%;
+    position: relative;
+    height: auto;
+    border: none;
+    border-radius: 0.625rem;
+
+    .hero-img {
+        width: 100%;
+        border-radius: 0.625rem;
+        transition: .3s ease;
+    }
+
+    .sale_type {
+        position: absolute;
+        top: 5%;
+        left: 3%;
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+
+        .btn {
+            background-color: #1A1A1A;
+            color: #fff;
+            padding: 0.4rem 0.75rem;
+            border: none;
+            border-radius: 3.125rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.65rem;
+            transition: .3s ease-in;
+            text-transform: uppercase;
+  
+            &:hover {
+                background-color: #fff;
+                color: #1A1A1A;
+                border: 2px solid #1A1A1A;
+            }
+        }
+
+        .yellow-color {
+            background-color: #E7C873;
+            color: #1A1A1A;
+
+            &:hover {
+                background-color: #1A1A1A;
+                color: #fff;
+                border: 2px solid #E7C873;
+            }
+        }
+    }
+
+    .card-content {
+        width: 93%;
+        position: absolute;
+        bottom: 5%;
+        left: 3%;
+        background-color: #fff;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+
+        h6 {
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        .street {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+
+            p {
+               font-weight: 500; 
+            }
+        }
+
+        .details {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            h6 {
+                font-weight: 700;
+                color: #EB664E;
+                font-size: 1rem;
+            }
+
+            .details-description {
+                display: flex;
+                align-items: center;
+                gap: 0.625rem;
+
+                span {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem; 
+                    padding: 0 0.625rem;
+                    border-right: 1px solid #918c8c;
+
+                    &:last-child {
+                        border-right: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (mx-width: 998px) {
+    .featured {
+        width: 100%;
+        height: auto;
+    }
+}
