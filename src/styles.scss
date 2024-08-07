@@ -35,3 +35,16 @@ a {
 li {
     list-style: none;
 }
+
+::-webkit-scrollbar {
+    width: 0.75rem;
+}
+
+::-webkit-scrollbar-track {
+    background: #e9ecf3;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #dddddd;
+    border-radius: 1rem;
+}
