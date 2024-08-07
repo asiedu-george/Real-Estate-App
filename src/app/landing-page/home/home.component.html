@@ -2,7 +2,10 @@
     <div class="home">
         <div class="carousel">
             <app-carousel
-               [images]="[image_one, image_two, image_three, image_four]"
+               [images]="[
+                'carousel-1.jpg', 'carousel-2.jpg', 'carousel-3.jpg',
+                'carousel-4.jpg', 'carousel-5.jpg', 'carousel-6.jpg'
+               ]"
             />
         </div>
         <header id="header">
@@ -13,11 +16,11 @@
                 <a href="#testimonial">Testimonial</a>
             </nav>
             <div class="image">
-                <img [src]="logo" alt="logo">
+                <img src="logo.svg" alt="logo">
             </div>
             <div class="profile">
                 <span>
-                    <img [src]="phoneIcon" alt="phoneIcon">
+                    <img src="phone.svg" alt="phoneIcon">
                     <p>054 4769087</p>
                 </span>
                 <div class="button">
@@ -25,7 +28,7 @@
                     <button type="button" routerLink="/auth/register" class="btn">Get started</button>
                 </div>
             </div>
-            <img [src]="menuIcon" class="menu" alt="hamburger-icon">
+            <img src="icon-menu.svg" class="menu" alt="hamburger-icon">
         </header>
 
         <div class="home-content">
@@ -35,7 +38,7 @@
                 <h6>Browse thousands of home listings, tailored to your preferences</h6>
                 <span class="browse">
                     <a routerLink="/properties">Browse more properties</a>
-                    <img [src]="right_arrow" alt="right_arrow">
+                    <img src="right-arrow.svg" alt="right_arrow">
                 </span>
             </div>
         </div>
