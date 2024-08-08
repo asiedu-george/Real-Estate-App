@@ -4,6 +4,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { ListingCardComponent } from './listing-card/listing-card.component';
 import { BackToTopComponent } from './back-to-top/back-to-top.component';
+import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.component';
 
 
 
@@ -12,7 +13,8 @@ import { BackToTopComponent } from './back-to-top/back-to-top.component';
     SpinnerComponent,
     CarouselComponent,
     ListingCardComponent,
-    BackToTopComponent
+    BackToTopComponent,
+    ThemeSwitcherComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { BackToTopComponent } from './back-to-top/back-to-top.component';
     CarouselComponent, 
     SpinnerComponent, 
     ListingCardComponent,
-    BackToTopComponent
+    BackToTopComponent,
+    ThemeSwitcherComponent
   ]
 })
 export class SharedModule { }
