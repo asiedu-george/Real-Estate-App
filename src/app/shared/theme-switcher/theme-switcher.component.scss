@@ -1,0 +1,19 @@
+@import '../../../styles.scss';
+
+.theme-btn {
+    max-width: 5rem;
+    padding: 0.2rem 0.625rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+    img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 998px) {
+    .theme-btn {
+        width: 100%;
+    }
+}
