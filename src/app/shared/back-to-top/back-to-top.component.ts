@@ -6,10 +6,11 @@ import { Component, HostListener } from '@angular/core';
   styleUrl: './back-to-top.component.scss'
 })
 export class BackToTopComponent {
+  private scrollHeight: number = 200;
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const scrollButton = document.querySelector('.top-icon') as HTMLElement
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    if (document.body.scrollTop > this.scrollHeight || document.documentElement.scrollTop > this.scrollHeight) {
       scrollButton.style.display = 'flex'
     } else {
       scrollButton.style.display = 'none'
