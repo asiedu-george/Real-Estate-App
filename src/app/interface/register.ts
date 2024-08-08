@@ -1,7 +1,6 @@
 export interface Register {
     additional_properties: {
-        address: {city: string},
-        profile_picture: string
+        address: {city: string}
     },
     email: string,
     first_name: string,
