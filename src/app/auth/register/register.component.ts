@@ -31,8 +31,7 @@ export class RegisterComponent {
       additional_properties: this.fb.group({
         address: this.fb.group({
           city: ['', [Validators.required, nameValidator()]]
-        }),
-        profile_picture: ['', Validators.required]
+        })
       })
     })
   }
