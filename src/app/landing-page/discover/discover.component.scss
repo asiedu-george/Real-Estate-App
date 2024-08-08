@@ -1,0 +1,91 @@
+@import '../../../styles.scss';
+
+.discover {
+    @include justify-center;
+    max-width: 100%;
+    flex-direction: column;
+    position: relative;
+
+    .hero-img {
+        background-color: $primary;
+        width: 100%;
+        height: 32.875rem;
+
+        img {
+            width: 100%;
+            opacity: 0.4;
+            height: 100%;
+        }
+    }
+
+    .content {
+        @include flex-center;
+        position: absolute;
+        flex-direction: column;
+        gap: 2rem;
+
+        h4 {
+            color: $white;
+            font-size: 3rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        p {
+            color: $white;
+            font-size: 0.75rem;
+            font-weight: 400;
+            line-height: 1.75rem;
+            text-align: center;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            background-color: $yellow;
+            color: $primary;
+            padding: 0.75rem 1.2rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: .3s ease-in;
+
+            &:hover {
+                background-color: transparent;  
+                color: $white;
+                border: 2px solid $yellow;
+                
+            }
+
+            img {
+                width: 0.875rem;
+                
+                &:hover {
+                    filter: brightness(0) invert(1);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .discover {
+        width: 100%;
+
+        .content {
+            width: 100%;
+
+            h4 {
+                font-size: 2rem;
+            }
+
+            p {
+                width: 85%;
+                margin: auto;
+            }
+        }
+    }
+}

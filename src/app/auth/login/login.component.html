@@ -10,11 +10,11 @@
             <p class="loading">Loading...</p>
     </ngx-spinner>
     <div class="image-bg">
-        <img [src]="backgroundImage" alt="login-image">
+        <img src="login.jpg" alt="login-image">
     </div>
     <div class="login-container">
         <div class="header">
-            <img [src]="logo" alt="logo">
+            <img src="logo.svg" class="logo" alt="logo">
             <h2>Log into your account</h2>
             <p>Welcome back! Please enter your credentials</p>
         </div>
@@ -47,7 +47,7 @@
                     id="password"
                 >
                 <div class="eye-icon" (click)="toggleShowPassword()">
-                    <img [src]="showPassword ? eyeOpen : eyeClose" alt="eye-icon">
+                    <img src="{{showPassword ? 'eye-open.svg' : 'eye-close.svg'}}" alt="eye-icon">
                 </div>
                 <div 
                     class="error"

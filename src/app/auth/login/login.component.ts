@@ -13,13 +13,9 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  public backgroundImage: string = 'https://img.freepik.com/free-photo/front-view-family-celebrating-birthday-together_23-2150572123.jpg?t=st=1722527067~exp=1722530667~hmac=fb380641756f4b5074a10a90c93d84a2f8429aac3c69ec91295e49c0ea9cf704&w=1060'
-  public logo: string = 'https://res.cloudinary.com/dhyqv69zh/image/upload/v1722528919/xxugmpsqn4lx8bduc1dx.svg'
   public loginForm: FormGroup
   public showPassword: boolean = false
   public loading: boolean = false
-  public eyeClose: string = 'https://res.cloudinary.com/dhyqv69zh/image/upload/v1722504406/rn6zoxbaqscrobxihqck.svg'
-  public eyeOpen: string = 'https://res.cloudinary.com/dhyqv69zh/image/upload/v1722504406/imsobocvv5be0tynxcth.svg'
 
   constructor(
     private fb: FormBuilder, 

@@ -1,0 +1,115 @@
+@import '../../../styles.scss';
+
+.listing-card {
+    max-width: 100%;
+    position: relative;
+    height: auto;
+    border: none;
+    border-radius: 0.625rem;
+
+    .hero-img {
+        width: 100%;
+        border-radius: 0.625rem;
+        transition: .3s ease;
+    }
+
+    .sale_type {
+        @include flex-center;
+        position: absolute;
+        top: 5%;
+        left: 3%;
+        gap: 0.625rem;
+
+        .btn {
+            background-color: $primary;
+            color: $white;
+            padding: 0.4rem 0.75rem;
+            border: none;
+            border-radius: 3.125rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.65rem;
+            transition: .3s ease-in;
+            text-transform: uppercase;
+  
+            &:hover {
+                background-color: $white;
+                color: $primary;
+                border: 2px solid $primary;
+            }
+        }
+
+        .yellow-color {
+            background-color: $yellow;
+            color: $primary;
+
+            &:hover {
+                background-color: $primary;
+                color: $white;
+                border: 2px solid $yellow;
+            }
+        }
+    }
+
+    .card-content {
+        width: 93%;
+        position: absolute;
+        bottom: 5%;
+        left: 3%;
+        background-color: $white;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+
+        h6 {
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        .street {
+            @include flex-center;
+            gap: 0.625rem;
+
+            p {
+               font-weight: 500; 
+            }
+        }
+
+        .details {
+            @include justify-between;
+
+            h6 {
+                font-weight: 700;
+                color: $orange;
+                font-size: 1rem;
+            }
+
+            .details-description {
+                display: flex;
+                align-items: center;
+                gap: 0.625rem;
+
+                span {
+                    @include flex-center;
+                    gap: 0.5rem; 
+                    padding: 0 0.625rem;
+                    border-right: 1px solid $secondary;
+
+                    &:last-child {
+                        border-right: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (mx-width: 998px) {
+    .featured {
+        width: 100%;
+        height: auto;
+    }
+}

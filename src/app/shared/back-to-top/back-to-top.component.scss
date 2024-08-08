@@ -1,0 +1,21 @@
+@import '../../../styles.scss';
+
+.top-icon {
+    display: none;
+    position: fixed;
+    top: 50%;
+    right: 3%;
+    z-index: 99;
+    @include justify-center;
+    width: 2.813rem;
+    height: 2.813rem;
+    border: none;
+    border-radius: 50%;
+    background-color: $yellow;
+    cursor: pointer;
+
+    img {
+      width: 30%;
+      filter: brightness(10) invert(1);
+    }
+}

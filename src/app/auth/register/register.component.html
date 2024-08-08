@@ -10,11 +10,11 @@
             <p class="loading">Loading...</p>
     </ngx-spinner>
     <div class="image-bg">
-        <img [src]="backgroundImage" alt="login-image">
+        <img src="register.jpg" class="logo" alt="register-image">
     </div>
     <div class="login-container">
         <div class="header">
-            <img [src]="logo" alt="logo">
+            <img src="logo.svg" class="logo" alt="logo">
             <h2>Create an account</h2>
             <p>Join us today - create an account</p>
         </div>
@@ -81,7 +81,7 @@
                     id="password"
                 >
                 <div class="eye-icon" (click)="toggleShowPassword()">
-                    <img [src]="showPassword ? eyeOpen : eyeClose" alt="eye-icon">
+                    <img src="{{showPassword ? 'eye-open.svg' : 'eye-close.svg'}}" alt="eye-icon">
                 </div>
                 <div 
                     class="error"
@@ -109,24 +109,6 @@
                             <div *ngIf="registerForm.get('city')?.errors?.['required']">city is required</div>
                             <div *ngIf="registerForm.get('city')?.errors?.['invalidName']">must contain only alphabets</div>
                         </div>
-                    </div>
-                </div>
-                <div class="form-control">
-                    <label for="profile_picture" class="profile">Profile picture <span>*</span></label>
-                    <input 
-                        type="file" 
-                        formControlName="profile_picture"
-                        required
-                        accept="image/*" 
-                        id="profile_picture"
-                        class="file"
-                    >
-                    <div 
-                        class="error"
-                        *ngIf="registerForm.get('profile_picture')?.invalid && (registerForm.get('profile_picture')?.touched || registerForm.get('profile_picture')?.dirty)"
-                    >
-                        <div *ngIf="registerForm.get('profile_picture')?.errors?.['required']">profile picture is required</div>
-                        <div *ngIf="registerForm.get('profile_picture')?.errors?.['invalidName']">must contain only alphabets</div>
                     </div>
                 </div>
             </div>

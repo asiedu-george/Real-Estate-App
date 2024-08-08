@@ -14,13 +14,9 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-  public backgroundImage: string = 'https://img.freepik.com/free-photo/portrait-senior-couple-love-showing-affection_23-2151029989.jpg?t=st=1722526983~exp=1722530583~hmac=05877ae5e56361c61953721dbea2ab2ab805dab1f6369c964453ec79fc5efba8&w=1060'
-  public logo: string = 'https://res.cloudinary.com/dhyqv69zh/image/upload/v1722528919/xxugmpsqn4lx8bduc1dx.svg'
   public registerForm: FormGroup
   public showPassword: boolean = false
   public loading: boolean = false
-  public eyeClose: string = 'https://res.cloudinary.com/dhyqv69zh/image/upload/v1722504406/rn6zoxbaqscrobxihqck.svg'
-  public eyeOpen: string = 'https://res.cloudinary.com/dhyqv69zh/image/upload/v1722504406/imsobocvv5be0tynxcth.svg'
 
   constructor(
     private fb: FormBuilder, 
