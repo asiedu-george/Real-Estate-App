@@ -6,6 +6,7 @@ import { Login } from '../../interface/login';
 import { AuthService } from '../service/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgToastService } from 'ng-angular-popup';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder, 
     private spinner: NgxSpinnerService,
+    private router: Router,
     private toast: NgToastService,
     private authService: AuthService) {
     this.loginForm = this.fb.group({
@@ -40,18 +42,16 @@ export class LoginComponent {
     this.authService.login(formData).subscribe({
       next: (response) => {
         this.loading = false
-        this.toast.success(response.message, 'Success', 3000)
+        this.toast.success(response.message, 'Success', 5000)
         this.loginForm.reset()
         setTimeout(() => {
           this.spinner.hide()
-        }, 2000)
-        console.log('response', response)
+        }, 3000)
       },
       error: (err) => {
         this.loading = false
-        this.toast.danger('Incorrect email or password', 'Error', 3000)
+        this.toast.danger(err.error, 'Error', 5000)
         this.spinner.hide()
-        console.error('error', err)
       }
     })
   }

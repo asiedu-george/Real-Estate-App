@@ -112,7 +112,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit">Register</button>
+            <button type="submit" [disabled]="registerForm.invalid || loading">Register</button>
             <p>
                 Already have an account? 
                 <span routerLink="/auth/login">Login</span>
