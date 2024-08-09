@@ -7,3 +7,12 @@ export interface UserProfile {
     last_name: string,
     id: string
 }
+
+export interface UserDetails {
+    email: string;
+    role: string;
+    firstname: string;
+    lastname: string;
+    client: string;
+    exp: number;
+  }
