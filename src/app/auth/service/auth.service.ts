@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
 import { authEnv } from '../../../environments/environment.development';
 import { Login, LoginResponse } from '../../interface/login';
 import { Register, RegisterResponse } from '../../interface/register';
@@ -16,6 +16,7 @@ export class AuthService {
   protected authUrl: string = authEnv.baseUrl
   private activeUserSubject: BehaviorSubject<LoginResponse | null>
   public activeUser: Observable<LoginResponse | null>
+  public activeUserValue: LoginResponse | null = null
 
   constructor(private http: HttpClient, private router: Router) {
     const storedUser: string | null = localStorage.getItem('activeUser')
@@ -25,15 +26,9 @@ export class AuthService {
     this.activeUser = this.activeUserSubject.asObservable()
   }
 
-  public get activeUserValue(): LoginResponse | null {
-    const value: LoginResponse | null = this.activeUserSubject.value
-    return value
-  }
-
   public storedUserData(response: LoginResponse): void {
     localStorage.setItem('activeUser', JSON.stringify(response))
-    const storedData = this.activeUserSubject.next(response)
-    return storedData
+    this.activeUserSubject.next(response)
   }
 
   register(user: Register): Observable<RegisterResponse> {
@@ -42,9 +37,13 @@ export class AuthService {
 
   login(user: Login): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.authUrl}user/login`, user).pipe(
-      map((response: LoginResponse) => {
+      tap((response: LoginResponse) => {
         this.storedUserData(response)
-        return response
+        this.activeUserValue = this.activeUserSubject.value
+        this.router.navigateByUrl('/listings')
+      }),
+      catchError(err => {
+        return throwError(() => err)
       })
     )
   }
@@ -83,6 +82,6 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return !!this.activeUserValue?.login_token
+    return !this.activeUserValue?.login_token
   }
 }
