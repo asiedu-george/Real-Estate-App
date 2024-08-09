@@ -4,7 +4,7 @@ import { HomeListingsComponent } from './home-listings/home-listings.component';
 
 const routes: Routes = [
   { 
-    path: 'properties',
+    path: '',
     component: HomeListingsComponent,
     title: 'Just Home | Home Listings Page'
   }
