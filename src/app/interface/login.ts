@@ -5,5 +5,6 @@ export interface Login {
 
 export interface LoginResponse {
     login_token: string,
+    refresh_token: string,
     message: string
 }
