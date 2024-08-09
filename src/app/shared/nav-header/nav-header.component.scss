@@ -1,0 +1,163 @@
+@import '../../../styles.scss';
+
+header {
+    @include justify-between;
+    width: 100%;
+    overflow: hidden;
+    background-color: $header;
+    border: none;
+    height: 4.375rem;
+    padding: 0 2rem;
+    transition: padding 0.3s ease-in-out, position 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+    nav a {
+        display: inline-block;
+        padding: 0 0.625rem;
+        margin: 0 0.625rem;
+        cursor: pointer;
+        position: relative;
+        color: $primary;
+
+        &::after {
+            content: '';
+            width: 0;
+            height: 3px;
+            background: $primary;
+            position: absolute;
+            left: 0;
+            bottom: -0.625rem;
+            display: inline-block;
+            transition: 0.5s ease-in-out;
+        }
+    
+        &:hover::after {
+            width: 100%;
+        }
+    }
+
+    .profile {
+        @include flex-center;
+        gap: 1rem;
+        
+        .initials {
+            @include flex-center;
+            gap: 0.625rem;
+            cursor: pointer;
+
+            .name {
+                width: 2.5rem;
+                height: 2.5rem;
+                cursor: pointer;
+                background-color: azure;
+                color: $primary;
+                @include justify-center;
+                font-weight: 700;
+                border: 2px solid $primary;
+                border-radius: 50%;
+            }
+
+            h5 {
+                color: $primary;
+                font-weight: 500;
+            }
+
+            p {
+                color: $secondary;
+                font-weight: 500;
+                font-size: 0.875rem;
+            }
+        }
+
+        .dropdown {
+            position: absolute;
+            right: 4px;
+            top: 10%;
+            z-index: 10;
+            background-color: $white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+            width: 18.75rem;
+            border: none;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+
+            .content {
+                @include flex-center;
+                gap: 0.625rem;
+                padding: 0.5rem 1rem;
+                cursor: pointer;
+                border-bottom: 1px solid rgb(192, 191, 191);
+
+                .name {
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    cursor: pointer;
+                    background-color: azure;
+                    color: $primary;
+                    @include justify-center;
+                    font-weight: 700;
+                    border: 2px solid $primary;
+                    border-radius: 50%;
+                }
+
+                h4 {
+                    color: $primary;
+                    font-size: 0.875rem;
+                    font-weight: 500;
+                }
+
+                &:hover {
+                    background-color: $header;
+                }
+            }
+
+            .logout {
+                border-bottom: 0;
+            }
+        }
+    }
+
+      .menu {
+        display: none;
+    }
+    
+}
+
+header.scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    border-radius: 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+@media screen and (max-width: 998px)  {
+    header {
+        width: 100%;
+        left: 0;
+        top: 0;
+        border-radius: 0;
+        overflow: auto;
+
+        nav a {
+          display: none;
+        }
+
+        .image {
+          position: absolute;
+        }
+
+        .profile {
+          display: none;
+        }
+
+        .menu {
+          display: block;
+          cursor: pointer;
+          transition: 0.3s ease-in;
+        }
+      }
+}
