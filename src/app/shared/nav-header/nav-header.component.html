@@ -1,0 +1,38 @@
+<header id="header">
+  <nav>
+    <a href="">Home</a>
+    <a href="#about_us">About us</a>
+    <a href="#listing">Listing</a>
+    <a href="#testimonial">Testimonial</a>
+  </nav>
+  <div>
+    <img ngSrc="logo.svg" alt="logo" width="120" height="35" priority>
+  </div>
+  <div class="profile">
+    <div class="initials" (click)="toggleDropdown()">
+      <div class="name">GA</div>
+      <h5>George</h5>
+      <img ngSrc="chevron-down.svg" width="30" height="30" alt="chevron-down" priority>
+    </div>
+    @if (dropdownOpen) {
+      <div class="dropdown">
+        <div class="content">
+          <div class="name">GA</div>
+          <div class="details">
+            <h4>email.com</h4>
+            <p>George Asiedu</p>
+          </div>
+        </div>
+        <div class="content" (click)="accountSettings()">
+          <img ngSrc="setting.svg" width="25" height="25" alt="settings" priority>
+          <h4>Account settings</h4>
+        </div>
+        <div class="content logout" (click)="logout()">
+          <img ngSrc="logout.svg" width="25" height="25" alt="settings" priority>
+          <h4>Log out</h4>
+        </div>
+      </div>
+    }
+  </div>
+  <img ngSrc="icon-menu.svg" width="25" height="25" class="menu" alt="hamburger-icon" priority>
+</header>
