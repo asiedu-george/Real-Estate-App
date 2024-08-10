@@ -1,1 +1,129 @@
-<app-nav-header/>
+<div class="home-listing">
+    <app-nav-header/>
+    <div class="filter-container">
+        <div class="search">
+            <input 
+                type="search"
+                placeholder="Neighborhood, city, street name"
+            >
+            <img ngSrc="search.svg" width="20" height="20" alt="search">
+        </div>
+        <div class="status">
+            <div (click)="toggleDropdown('status')" class="status-content">
+                <p>For Rent</p>
+                <img ngSrc="chevron-down.svg" width="25" height="25" alt="chevron-down" priority>
+            </div>
+            <div *ngIf="dropdowns.status" class="dropdown status-dropdown">
+                <span>
+                    <input type="radio" id="rent" aria-label="rent">
+                    <h5>For Rent</h5>
+                </span>
+                <span>
+                    <input type="radio" id="sale" aria-label="sale">
+                    <h5>For Sale</h5>
+                </span>
+            </div>
+        </div>
+        <div class="price status">
+            <div (click)="toggleDropdown('price')" class="price-content status-content">
+                <p>Price</p>
+                <img ngSrc="chevron-down.svg" width="25" height="25" alt="chevron-down" priority>
+            </div>
+            <div *ngIf="dropdowns.price" class="dropdown price-dropdown">
+                <h4>Price Range</h4>
+                <div class="range">
+                    <span>
+                        <h5>Minimum</h5>
+                        <select name="min" id="min" aria-label="min">
+                            <option value="">$900</option>
+                        </select>
+                    </span>
+                    <h6>-</h6>
+                    <span>
+                        <h5>Maximum</h5>
+                        <select name="max" id="max" aria-label="max">
+                            <option value="">$90000</option>
+                        </select>
+                    </span>
+                </div>
+                <div class="btn">
+                    <button type="button" class="apply-btn">Apply</button>
+                </div>
+            </div>
+        </div>
+        <div class="bed-bath status">
+            <div (click)="toggleDropdown('bedBath')" class="bed-bath-content status-content">
+                <p>Beds & Baths</p>
+                <img ngSrc="chevron-down.svg" width="25" height="25" alt="chevron-down" priority>
+            </div>
+            <div *ngIf="dropdowns.bedBath" class="dropdown bed-bath-dropdown">
+                <div class="bedroom">
+                    <h4>Number of Bedrooms</h4>
+                    <div class="bed-num">
+                        <h5>Bedrooms</h5>
+                        <div class="item">
+                            <span>1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>5</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bedroom">
+                    <h4>Number of Bathrooms</h4>
+                    <div class="bed-num">
+                        <h5>Bathrooms</h5>
+                        <div class="item">
+                            <span>1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>5</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn">
+                    <button type="button" class="apply-btn">Apply</button>
+                </div>
+            </div>
+        </div>
+        <div class="home-type status">
+            <div (click)="toggleDropdown('homeType')" class="bed-bath-content status-content">
+                <p>Home Type</p>
+                <img ngSrc="chevron-down.svg" width="25" height="25" alt="chevron-down" priority>
+            </div>
+            <div *ngIf="dropdowns.homeType" class="dropdown home-type-dropdown">
+                <div class="home">
+                    <h4>Home Type</h4>
+                    <div class="checkbox">
+                        <span>
+                            <input type="checkbox" aria-label="apartment">
+                            <h5>Apartment</h5>
+                        </span>
+                        <span>
+                            <input type="checkbox" aria-label="condo">
+                            <h5>Condos/Coop</h5>
+                        </span>
+                        <span>
+                            <input type="checkbox" aria-label="multi_family">
+                            <h5>Multi Family</h5>
+                        </span>
+                        <span>
+                            <input type="checkbox" aria-label="town_homes">
+                            <h5>Townhomes</h5>
+                        </span>
+                        <span>
+                            <input type="checkbox" aria-label="lands">
+                            <h5>Lands</h5>
+                        </span>
+                    </div>
+                </div>
+                <div class="btn">
+                    <button type="button" class="apply-btn">Apply</button>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="search-btn">Search</button>
+    </div>                                  
+</div>
