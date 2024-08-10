@@ -3,5 +3,8 @@
         "asiedu",
         "firstname",
         "tseslint"
+    ],
+    "cSpell.ignoreWords": [
+        "Townhomes"
     ]
 }
