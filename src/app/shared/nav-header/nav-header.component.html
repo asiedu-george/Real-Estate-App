@@ -10,17 +10,17 @@
   </div>
   <div class="profile">
     <div class="initials" (click)="toggleDropdown()">
-      <div class="name">GA</div>
-      <h5>George</h5>
+      <div *ngIf="userInitials" class="name">{{userInitials}}</div>
+      <h5>{{username}}</h5>
       <img ngSrc="chevron-down.svg" width="30" height="30" alt="chevron-down" priority>
     </div>
     @if (dropdownOpen) {
       <div class="dropdown">
         <div class="content">
-          <div class="name">GA</div>
+          <div *ngIf="userInitials" class="name">{{userInitials}}</div>
           <div class="details">
-            <h4>email.com</h4>
-            <p>George Asiedu</p>
+            <h4>{{email}}</h4>
+            <p>{{username}}</p>
           </div>
         </div>
         <div class="content" (click)="accountSettings()">
