@@ -18,13 +18,23 @@ export class NavHeaderComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.authService.refreshStoredUser();
+    this.authService.activeUser.subscribe((user: LoginResponse | null) => {
+      if (user) {
+        const token = user.login_token
+        const decodedToken: UserDetails = jwtDecode<UserDetails>(token)
 
+        this.username = `${decodedToken.firstname} ${decodedToken.lastname}`;
+        this.userInitials = this.getInitials(this.username);
+        this.email = decodedToken.email
+      }
+    });
   }
 
   getInitials(name: string): string {
-    const [first_name, last_name] = name.split(' ')
-    const initials = first_name.charAt(0).toUpperCase() + (last_name ? last_name.charAt(0).toUpperCase() : '')
-    return initials
+    const [firstName, lastName] = name.split(' ');
+    const initials = firstName.charAt(0).toUpperCase() + (lastName ? lastName.charAt(0).toUpperCase() : '');
+    return initials;
   }
 
   toggleDropdown(): void {
