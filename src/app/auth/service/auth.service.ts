@@ -13,75 +13,88 @@ import { RefreshTokenResponse } from '../../interface/refresh-token-response';
   providedIn: 'root'
 })
 export class AuthService {
-  protected authUrl: string = authEnv.baseUrl
-  private activeUserSubject: BehaviorSubject<LoginResponse | null>
-  public activeUser: Observable<LoginResponse | null>
-  public activeUserValue: LoginResponse | null = null
+  protected authUrl: string = authEnv.baseUrl;
+  private activeUserSubject: BehaviorSubject<LoginResponse | null>;
+  public activeUser: Observable<LoginResponse | null>;
 
   constructor(private http: HttpClient, private router: Router) {
-    const storedUser: string | null = localStorage.getItem('activeUser')
-    this.activeUserSubject = new BehaviorSubject<LoginResponse | null>(
-      storedUser ? JSON.parse(storedUser) : null
-    )
-    this.activeUser = this.activeUserSubject.asObservable()
+    const storedUser: string | null = localStorage.getItem('activeUser');
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      this.activeUserSubject = new BehaviorSubject<LoginResponse | null>(parsedUser);
+    } else {
+      this.activeUserSubject = new BehaviorSubject<LoginResponse | null>(null);
+    }
+    this.activeUser = this.activeUserSubject.asObservable();
+  }
+  
+  public storedUserData(response: LoginResponse): void {
+    localStorage.setItem('activeUser', JSON.stringify(response));
+    this.activeUserSubject.next(response);
   }
 
-  public storedUserData(response: LoginResponse): void {
-    localStorage.setItem('activeUser', JSON.stringify(response))
-    this.activeUserSubject.next(response)
-  }
+  get activeUserValue(): LoginResponse | null {
+    return this.activeUserSubject.value;
+  }  
+
+  refreshStoredUser(): void {
+    const storedUser: string | null = localStorage.getItem('activeUser');
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      this.activeUserSubject.next(parsedUser);
+    } else {
+      this.activeUserSubject.next(null);
+    }
+  }  
 
   register(user: Register): Observable<RegisterResponse> {
-    return this.http.post<RegisterResponse>(`${this.authUrl}user/signup`, user)
+    return this.http.post<RegisterResponse>(`${this.authUrl}user/signup`, user);
   }
 
   login(user: Login): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.authUrl}user/login`, user).pipe(
       tap((response: LoginResponse) => {
-        this.storedUserData(response)
-        this.activeUserValue = this.activeUserSubject.value
-        this.router.navigateByUrl('/listings')
+        this.storedUserData(response);
+        this.router.navigateByUrl('/listings');
       }),
       catchError(err => {
-        return throwError(() => err)
+        return throwError(() => err);
       })
-    )
+    );
   }
 
   updatePassword(user: UpdatePassword): Observable<UpdatePasswordResponse> {
-    return this.http.post<UpdatePasswordResponse>(`${this.authUrl}user/update-password`, user)
+    return this.http.post<UpdatePasswordResponse>(`${this.authUrl}user/update-password`, user);
   }
 
   validateUser(): Observable<{ message: string }> {
-    return this.http.get<{ message: string }>(`${this.authUrl}user/validate`)
+    return this.http.get<{ message: string }>(`${this.authUrl}user/validate`);
   }
 
   getUserProfile(): Observable<UserProfile> {
-    return this.http.get<UserProfile>(`${this.authUrl}/user/profile`)
+    return this.http.get<UserProfile>(`${this.authUrl}/user/profile`);
   }
 
   logout(): void {
-    localStorage.removeItem('activeUser')
-    this.activeUserSubject.next(null)
-    this.router.navigateByUrl('/auth/login')
+    localStorage.removeItem('activeUser');
+    this.activeUserSubject.next(null);
+    this.router.navigateByUrl('/auth/login');
   }
 
   refreshToken(refresh_token: string): Observable<RefreshTokenResponse> {
-    const body = JSON.stringify({ refresh_token: refresh_token })
+    const body = JSON.stringify({ refresh_token: refresh_token });
 
     return this.http.post<RefreshTokenResponse>(`${this.authUrl}/user/refresh-token`, body)
     .pipe(
-      map(response => {
-        return response
-      }),
+      map(response => response),
       catchError(err => {
-        this.logout()
-        return throwError(() => err)
+        this.logout();
+        return throwError(() => err);
       })
-    )
+    );
   }
 
   isAuthenticated(): boolean {
-    return !this.activeUserValue?.login_token
+    return !!this.activeUserValue?.login_token;
   }
 }
