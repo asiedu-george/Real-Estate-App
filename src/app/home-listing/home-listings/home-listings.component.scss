@@ -1,8 +1,10 @@
 @import '../../../styles.scss';
 
 .home-listing {
-    width: 100%;
+    max-width: 100%;
     height: auto;
+    display: flex;
+    flex-direction: column;
     background-color: $white;
 
     .filter-container {
@@ -12,9 +14,6 @@
         padding: 1rem 3rem;
         background-color: $white;
         box-shadow: 0 2px 2px rgba(0,0,0,0.1);
-        position: fixed;
-        top: 10%;
-        z-index: 50;
 
         .search {
             @include justify-between;
@@ -245,4 +244,16 @@
             }
         }
     }
+
+    .outlet {
+        margin-top: 1.875rem;
+    }
+}
+
+#filter.scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
 }
