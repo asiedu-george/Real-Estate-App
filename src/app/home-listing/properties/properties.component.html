@@ -1,0 +1,8 @@
+<p>Property listing works</p>
+
+<div *ngIf="isLoading$ | async">Loading...</div>
+<div *ngIf="error$ | async as error">{{ error }}</div>
+
+<div *ngFor="let list of listings$ | async">
+  {{ list.property_id }} - {{ list.list_price }}
+</div>
