@@ -1,10 +1,18 @@
-export interface Listing {
+export interface HomeListingResponse {
+    data: {
+        home_search: HomeSearchResult;
+    };
+}
+
+export interface HomeSearchResult {
+    __typename: string;
     count: number;
     total: number;
     results: SearchHome[];
 }
 
-interface SearchHome {
+export interface SearchHome {
+    __typename: string;
     property_id: string;
     listing_id: string;
     plan_id: string | null;
@@ -12,7 +20,7 @@ interface SearchHome {
     photo_count: number;
     branding: Branding[];
     location: SearchHomeLocation;
-    open_houses: null;
+    open_houses: HomeOpenHouse[] | null;
     description: SearchHomeDescription;
     virtual_tours: null;
     matterport: boolean;
@@ -23,7 +31,7 @@ interface SearchHome {
     community: null;
     primary_photo: HomePhoto;
     href: string;
-    list_price: number | null;
+    list_price: number;
     list_price_min: number | null;
     list_price_max: number | null;
     price_reduced_amount: number | null;
@@ -31,24 +39,27 @@ interface SearchHome {
     lead_attributes: LeadAttributes;
     last_sold_date: string | null;
     list_date: string;
-    products: ProductSummary | null;
+    products: ProductSummary;
     last_sold_price: number | null;
 }
-  
-interface Branding {
+
+export interface Branding {
+    __typename: string;
     photo: string | null;
-    name: string | null;
+    name: string;
     phone: string | null;
     link: string | null;
 }
-  
-interface SearchHomeLocation {
+
+export interface SearchHomeLocation {
+    __typename: string;
     address: SearchHomeAddress;
     street_view_url: string;
     county: HomeCounty;
 }
-  
-interface SearchHomeAddress {
+
+export interface SearchHomeAddress {
+    __typename: string;
     city: string;
     line: string;
     street_name: string;
@@ -60,46 +71,51 @@ interface SearchHomeAddress {
     state: string;
     coordinate: Coordinate;
 }
-  
-interface Coordinate {
+
+export interface Coordinate {
+    __typename: string;
     lat: number;
     lon: number;
     accuracy: number | null;
 }
-  
-interface HomeCounty {
+
+export interface HomeCounty {
+    __typename: string;
     fips_code: string;
 }
-  
-interface SearchHomeDescription {
-    sub_type: string | null;
+
+export interface SearchHomeDescription {
+    __typename: string;
+    sub_type: string;
     type: string;
-    beds: number | null;
-    baths: number | null;
-    lot_sqft: number | null;
-    sqft: number | null;
+    beds: number;
+    baths: number;
+    lot_sqft: number;
+    sqft: number;
     beds_max: number | null;
     beds_min: number | null;
     sqft_max: number | null;
     sqft_min: number | null;
-    baths_full: number | null;
+    baths_full: number;
     baths_half: number | null;
     baths_min: number | null;
     baths_max: number | null;
     baths_full_calc: number;
     baths_partial_calc: number | null;
 }
-  
-interface HomeAdvertiser {
-    fulfillment_id: string | null;
-    name: string | null;
-    email: string | null;
+
+export interface HomeAdvertiser {
+    __typename: string;
+    fulfillment_id: string;
+    name: string;
+    email: string;
     href: string | null;
     slogan: string | null;
     type: string;
 }
-  
-interface HomeFlags {
+
+export interface HomeFlags {
+    __typename: string;
     is_price_reduced: boolean | null;
     is_new_construction: boolean | null;
     is_foreclosure: boolean | null;
@@ -109,9 +125,10 @@ interface HomeFlags {
     is_contingent: boolean | null;
     is_pending: boolean | null;
 }
-  
-interface MlsSource {
-    agents: MlsAgent[] | null;
+
+export interface MlsSource {
+    __typename: string;
+    agents: MlsAgent[];
     id: string;
     type: string;
     spec_id: string | null;
@@ -119,39 +136,54 @@ interface MlsSource {
     listing_href: string | null;
     listing_id: string;
 }
-  
-interface MlsAgent {
+
+export interface MlsAgent {
+    __typename: string;
     id: string;
     agent_id: string;
     agent_name: string;
     office_id: string;
-    office_name: string | null;
+    office_name: string;
 }
-  
-interface HomePetPolicy {
-    cats: boolean;
-    dogs: boolean;
-}
-  
-interface HomePhoto {
+
+export interface HomePhoto {
+    __typename: string;
     href: string;
 }
-  
-interface LatestEstimate {
-    estimate: number;
-}
-  
-interface LeadAttributes {
+
+export interface LeadAttributes {
+    __typename: string;
     lead_type: string;
     show_contact_an_agent: boolean;
     opcity_lead_attributes: OpCityLeadAttributes;
 }
-  
-interface OpCityLeadAttributes {
+
+export interface OpCityLeadAttributes {
+    __typename: string;
     flip_the_market_enabled: boolean;
 }
-  
-interface ProductSummary {
+
+export interface ProductSummary {
+    __typename: string;
     brand_name: string;
     products: string[];
+}
+
+export interface HomePetPolicy {
+    __typename: string;
+    cats: boolean;
+    dogs: boolean;
+}
+
+export interface HomeOpenHouse {
+    __typename: string;
+    start_date: string;
+    end_date: string;
+    description: string | null;
+    time_zone: string;
+}
+
+export interface LatestEstimate {
+    __typename: string;
+    estimate: number;
 }
