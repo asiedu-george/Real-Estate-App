@@ -1,20 +1,28 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { AsyncPipe, CommonModule, NgOptimizedImage } from '@angular/common';
 
 import { HomeListingRoutingModule } from './home-listing-routing.module';
 import { HomeListingsComponent } from './home-listings/home-listings.component';
 import {SharedModule} from "../shared/shared.module";
-
+import { PropertiesComponent } from './properties/properties.component';
+// import { StoreModule } from '@ngrx/store';
+// import { listingReducers } from './store/reducers';
+// import { EffectsModule } from '@ngrx/effects';
+// import { ListingEffects } from './store/effects';
 
 @NgModule({
   declarations: [
-    HomeListingsComponent
+    HomeListingsComponent,
+    PropertiesComponent
   ],
   imports: [
     CommonModule,
     HomeListingRoutingModule,
     SharedModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    AsyncPipe,
+    // StoreModule.forFeature('listings', listingReducers),
+    // EffectsModule.forFeature([ListingEffects])
   ]
 })
 export class HomeListingModule { }
