@@ -11,7 +11,7 @@ export const routes: Routes = [
         path: 'listings',
         loadChildren: () => import('../app/home-listing/home-listing.module')
         .then(hm => hm.HomeListingModule),
-        canActivate: [canActivate]
+        // canActivate: [canActivate]
     },
     {
         path: '',
