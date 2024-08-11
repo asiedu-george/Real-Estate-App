@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-home-listings',
@@ -18,5 +18,15 @@ export class HomeListingsComponent {
       this.dropdowns[key as keyof typeof this.dropdowns] = (key === dropdown) 
       ? !this.dropdowns[key as keyof typeof this.dropdowns] : false;
     });
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(): void {
+    const header = document.getElementById('filter')
+    if (window.scrollY > 0) {
+      header?.classList.add('scrolled')
+    } else {
+      header?.classList.remove('scrolled')
+    }
   }
 }
