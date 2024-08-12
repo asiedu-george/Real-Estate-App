@@ -1,7 +1,7 @@
-import { HomeSearchResult } from "../../interface/listing";
+import { HomeData } from "../../interface/home-listing";
 
 export interface HomeListingState {
     isLoading: boolean;
-    data: HomeSearchResult | null;
+    list: HomeData | null;
     error: string | null
 }
