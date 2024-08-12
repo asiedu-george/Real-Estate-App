@@ -1,11 +1,11 @@
 import { createAction, props } from "@ngrx/store";
-import { HomeSearchResult, SearchHome } from "../../interface/listing";
+import { HomeData, HomeSearchResult } from "../../interface/home-listing";
 
 export const getHomeListing = createAction('[Listings] Get Listings')
 
 export const homeListingSuccess = createAction(
     '[Listings] Get Listings Success',
-    props<{ data: HomeSearchResult }>()
+    props<{ lists: HomeData }>()
 )
 
 export const homeListingFailure = createAction(
