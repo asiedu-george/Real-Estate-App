@@ -1,0 +1,14 @@
+@import '../../../styles.scss';
+
+.properties {
+    max-width: 100%;
+    height: auto;
+    padding: 1rem 3rem;
+
+    .listings {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+    }
+}
