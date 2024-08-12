@@ -1,31 +1,33 @@
-<div class="listing-card">
-    <img src="listing.jpg" class="hero-img" alt="home-image">
+<div class="listing-card" routerLink="listing/{{listing().property_id}}">
+    <div class="hero-img">
+        <img 
+            [src]="listing().primary_photo.href"  
+            alt="listing-image"
+        >
+    </div>
     <div class="sale_type">
-        <button type="button" class="btn">for sale</button>
-        <button type="button" class="btn yellow-color">featured</button>
+        <button type="button" class="btn">{{listing().status}}</button>
     </div>
     <div class="card-content">
-        <h6>Luxury Family Home</h6>
+        <h6>{{listing().description.type | sentenceCase}}</h6>
+        <h6 class="price">{{listing().list_price | currency}}</h6>
         <span class="street">
-            <img src="location.svg" alt="location-icon">
-            <p>1800-1818 79th St</p>
+            <img ngSrc="location.svg" width="25" height="14.2" alt="location-icon" priority>
+            <p>{{listing().location.address.line}}</p>
         </span>
         <div class="details">
-            <h6>$400,000</h6>
-            <div class="details-description">
-                <span>
-                    <img src="bed.svg" alt="bed-icon">
-                    <p>4</p>
-                </span>
-                <span>
-                    <img src="bath.svg" alt="bath-icon">
-                    <p>2</p>
-                </span>
-                <span>
-                    <img src="copy.svg" alt="copy-icon">
-                    <p>400</p>
-                </span>
-            </div>
+            <span>
+                <img ngSrc="bed.svg" width="25" height="14.2" alt="bed-icon" priority>
+                <p>{{listing().description.beds}}</p>
+            </span>
+            <span>
+                <img ngSrc="bath.svg" width="25" height="14.2" alt="bath-icon" priority>
+                <p>{{listing().description.baths}}</p>
+            </span>
+            <span>
+                <img ngSrc="copy.svg" width="25" height="14.2" alt="copy-icon" priority>
+                <p>{{listing().description.sqft}} sqft</p>
+            </span>
         </div>
     </div>
 </div>
