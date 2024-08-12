@@ -3,7 +3,6 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { HomeListingService } from "../service/home-listing.service";
 import * as HomeListingsAction from './actions'
 import { catchError, map, mergeMap, of } from "rxjs";
-import { HomeSearchResult } from "../../interface/listing";
 
 @Injectable()
 export class ListingEffects {
@@ -17,7 +16,7 @@ export class ListingEffects {
             ofType(HomeListingsAction.getHomeListing),
             mergeMap(() => {
                 return this.homeListingService.getForSaleListing().pipe(
-                    map((data: HomeSearchResult) => HomeListingsAction.homeListingSuccess({data})),
+                    map(({data}) => HomeListingsAction.homeListingSuccess({lists: data})),
                     catchError((error) => 
                         of(HomeListingsAction.homeListingFailure({ error: error.message }))
                     )
