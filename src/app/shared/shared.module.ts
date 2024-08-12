@@ -7,6 +7,7 @@ import { BackToTopComponent } from './back-to-top/back-to-top.component';
 import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.component';
 import { NavHeaderComponent } from './nav-header/nav-header.component';
 import {RouterLink} from "@angular/router";
+import { SentenceCasePipe } from './pipe/sentence-case.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {RouterLink} from "@angular/router";
     ListingCardComponent,
     BackToTopComponent,
     ThemeSwitcherComponent,
-    NavHeaderComponent
+    NavHeaderComponent,
+    SentenceCasePipe
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import {RouterLink} from "@angular/router";
     ListingCardComponent,
     BackToTopComponent,
     ThemeSwitcherComponent,
-    NavHeaderComponent
+    NavHeaderComponent,
+    SentenceCasePipe
   ]
 })
 export class SharedModule { }
