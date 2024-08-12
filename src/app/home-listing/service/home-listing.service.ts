@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
-import { Observable } from 'rxjs';
-import { HomeSearchResult } from '../../interface/listing';
+import { HomeData, HomeListingResponse } from '../../interface/home-listing';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,7 @@ export class HomeListingService {
 
   constructor(private http: HttpClient) { }
 
-  getForSaleListing(): Observable<HomeSearchResult> {
+  getForSaleListing() {
     const body = {
       limit: 200,
       offset: 0,
@@ -24,10 +23,10 @@ export class HomeListingService {
       }
     };
 
-    return this.http.post<HomeSearchResult>(`${this.rapidApi}properties/v3/list`, body);
+    return this.http.post<HomeListingResponse>(`${this.rapidApi}properties/v3/list`, body)
   }
 
-  getForRentListing(): Observable<HomeSearchResult> {
+  getForRentListing() {
     const body = {
       limit: 200,
       offset: 0,
@@ -39,10 +38,10 @@ export class HomeListingService {
       }
     };
 
-    return this.http.post<HomeSearchResult>(`${this.rapidApi}properties/v3/list`, body);
+    return this.http.post<HomeData>(`${this.rapidApi}properties/v3/list`, body);
   }
 
-  getSoldListing(): Observable<HomeSearchResult> {
+  getSoldListing() {
     const body = {
       limit: 200,
       offset: 0,
@@ -54,6 +53,6 @@ export class HomeListingService {
       }
     };
 
-    return this.http.post<HomeSearchResult>(`${this.rapidApi}properties/v3/list`, body);
+    return this.http.post<HomeData>(`${this.rapidApi}properties/v3/list`, body);
   }
 }
