@@ -5,6 +5,12 @@
     height: auto;
     padding: 1rem 3rem;
 
+    h2 {
+        color: $primary;
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+    }
+
     .listings {
         width: 100%;
         display: grid;
