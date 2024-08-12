@@ -27,6 +27,7 @@ import { FooterComponent } from './footer/footer.component';
     LandingPageRoutingModule,
     RouterModule,
     SharedModule
-  ]
+  ],
+  exports: [FooterComponent]
 })
 export class LandingPageModule { }
