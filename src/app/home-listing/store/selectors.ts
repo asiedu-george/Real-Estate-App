@@ -1,19 +1,19 @@
-import { createSelector } from "@ngrx/store";
-import { AppStateInterface } from "../../interface/app-state";
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { HomeListingState } from "./state";
 
-export const selectFeature = (state: AppStateInterface) => state.data
+export const selectFeature = createFeatureSelector<HomeListingState>('listings')
 
-export const isLoadingSelector = createSelector(
+export const selectIsLoading = createSelector(
     selectFeature,
     (state) => state.isLoading
 )
 
-export const listingSelector = createSelector(
-    selectFeature,
-    (state) => state.data
+export const selectListings = createSelector(
+    selectFeature, 
+    (state) => state.list
 )
 
-export const errorSelector = createSelector(
+export const SelectError = createSelector(
     selectFeature,
     (state) => state.error
 )
