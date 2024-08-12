@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import * as HomeListingsAction from '../store/actions'
-import { listingSelector, errorSelector, isLoadingSelector } from '../store/selectors';
-import { AppStateInterface } from '../../interface/app-state';
-import { map, Observable } from 'rxjs';
-import { HomeSearchResult, SearchHome } from '../../interface/listing';
+import { SelectError, selectIsLoading, selectListings } from '../store/selectors';
+import { HomeListingState } from '../store/state';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-properties',
@@ -12,22 +11,17 @@ import { HomeSearchResult, SearchHome } from '../../interface/listing';
   styleUrl: './properties.component.scss'
 })
 export class PropertiesComponent implements OnInit {
-  public isLoading$: Observable<boolean>
-  public error$: Observable<string | null>
-  public listings$: Observable<SearchHome[]>
+  isLoading =  this.store.selectSignal(selectIsLoading)
+  error = this.store.selectSignal(SelectError)
+  listings$ = this.store.select(selectListings)
   
-  constructor(private store: Store<AppStateInterface>) {
-    this.isLoading$ = this.store.pipe(select(isLoadingSelector))
-    this.error$ = this.store.pipe(select(errorSelector))
-    this.listings$ = this.store.pipe(
-      select(listingSelector),
-      map((homeSearchResult: HomeSearchResult | null) => {
-        return homeSearchResult?.results || []
-      })
-    )
-  }
+  constructor(
+    private store: Store<HomeListingState>,
+    private spinner: NgxSpinnerService
+  ) {}
   
   ngOnInit(): void {
+    this.spinner.show()
     this.store.dispatch(HomeListingsAction.getHomeListing())
   }
 }
