@@ -1,8 +1,18 @@
-<p>Property listing works</p>
-
-<div *ngIf="isLoading$ | async">Loading...</div>
-<div *ngIf="error$ | async as error">{{ error }}</div>
-
-<div *ngFor="let list of listings$ | async">
-  {{ list.property_id }} - {{ list.list_price }}
+<div class="properties">
+  @if (isLoading()) {
+    <ngx-spinner
+      bdColor="rgba(0, 0, 0, 0.8)"
+      size="large"
+      color="#fff"
+      type="line-scale-pulse-out"
+    >
+        <p class="loading">Loading...</p>
+    </ngx-spinner>
+  }
+  
+  <div *ngIf="listings$ | async as listings" class="listings">
+    @for (list of listings.home_search.results; track list.property_id) {
+      <app-listing-card [listing]="list" />
+    }
+  </div>
 </div>
