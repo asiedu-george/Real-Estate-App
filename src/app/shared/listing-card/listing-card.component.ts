@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { SearchHome } from '../../interface/listing';
+import { HomeData, HomeSearchResult, Result } from '../../interface/home-listing';
 
 @Component({
   selector: 'app-listing-card',
@@ -7,5 +7,5 @@ import { SearchHome } from '../../interface/listing';
   styleUrl: './listing-card.component.scss'
 })
 export class ListingCardComponent {
-  public listing = input<SearchHome>({} as SearchHome)
+  public listing = input<Result>({} as Result)
 }
