@@ -11,8 +11,8 @@ import { rapidApiInterceptor } from './interceptors/rapid-api/rapid-api.intercep
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { listingReducers } from './home-listing/store/reducers';
-import { ListingEffects } from './home-listing/store/effects';
+import { listingReducers } from './home-listing/store/reducers/reducers';
+import { ListingEffects } from './home-listing/store/effects/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,5 +27,5 @@ export const appConfig: ApplicationConfig = {
     provideStore({'listings': listingReducers}),
     provideEffects([ListingEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
-]
+  ]
 }

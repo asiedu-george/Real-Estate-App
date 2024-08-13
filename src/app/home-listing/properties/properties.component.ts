@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as HomeListingsAction from '../store/actions'
-import { SelectError, selectIsLoading, selectListings } from '../store/selectors';
-import { HomeListingState } from '../store/state';
+import * as HomeListingsAction from '../store/actions/actions'
+import { SelectError, selectIsLoading, selectListings } from '../store/selectors/selectors';
+import { HomeListingState } from '../store/state/state';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
