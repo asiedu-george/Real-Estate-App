@@ -13,6 +13,8 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { listingReducers } from './home-listing/store/reducers/reducers';
 import { ListingEffects } from './home-listing/store/effects/effects';
+import { listingDescriptionReducers } from './home-listing/store/reducers/details.reducers';
+import { ListingDetailsEffects } from './home-listing/store/effects/details.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,8 +26,8 @@ export const appConfig: ApplicationConfig = {
     ])),
     provideSpinnerConfig({ type: 'ball-scale-multiple' }),
     importProvidersFrom(NgToastModule),
-    provideStore({'listings': listingReducers}),
-    provideEffects([ListingEffects]),
+    provideStore({'listings': listingReducers, 'details': listingDescriptionReducers}),
+    provideEffects([ListingEffects, ListingDetailsEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
   ]
 }
