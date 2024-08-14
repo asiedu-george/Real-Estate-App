@@ -11,10 +11,15 @@
         margin-bottom: 2rem;
     }
 
+    .loading {
+        color: $white;
+        font-size: 1.25rem;
+    }
+
     .listings {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
         gap: 1rem;
     }
 }
