@@ -1,9 +1,5 @@
-<div class="listing-card" routerLink="listing/{{listing().property_id}}">
-    <div class="hero-img">
-        <img 
-            [src]="listing().primary_photo.href"  
-            alt="listing-image"
-        >
+<div class="listing-card" routerLink="{{listing().property_id}}">
+    <div class="hero-img" [style.backgroundImage]="'url(' + listing().primary_photo.href + ')'">
     </div>
     <div class="sale_type">
         <button type="button" class="btn">{{listing().status}}</button>
