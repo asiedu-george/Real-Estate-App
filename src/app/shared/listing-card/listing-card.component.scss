@@ -14,17 +14,8 @@
         box-shadow: 0 6px 6px rgba(0,0,0,0.1);
     }
 
-    .hero-img {
-        aspect-ratio: 1.017/1 !important;
-        object-fit: contain !important;
+    .listing-img {
         border-radius: 0.625rem 0.625rem 0 0;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-
-        &:hover {
-            opacity: 0.4;
-        }
     }
 
     .sale_type {
@@ -35,8 +26,6 @@
         gap: 0.625rem;
 
         .btn {
-            background-color: $primary;
-            color: $white;
             padding: 0.4rem 0.75rem;
             border: none;
             border-radius: 3.125rem;
@@ -50,6 +39,21 @@
                 background-color: $white;
                 color: $primary;
                 border: 2px solid $primary;
+            }
+
+            &.sold {
+                color: $primary;
+                background-color: $orange;
+            }
+          
+              &.for_rent {
+                color: $primary;
+                background-color: $yellow;
+            }
+          
+              &.for_sale {
+                color: $white;
+                background-color: $primary;
             }
         }
     }
