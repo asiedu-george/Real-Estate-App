@@ -68,7 +68,8 @@
                     *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)"
                 >
                     <div *ngIf="registerForm.get('email')?.errors?.['required']">email is required</div>
-                    <div *ngIf="registerForm.get('email')?.errors?.['invalidEmail']">invalid email</div>
+                    <div *ngIf="registerForm.get('email')?.errors?.['invalidEmail']">invalid email format</div>
+                    <div *ngIf="registerForm.get('email')?.errors?.['invalidDomain']">email domain is not allowed</div>
                 </div>
             </div>
             <div class="form-control passsword">
@@ -89,27 +90,6 @@
                 >
                     <div *ngIf="registerForm.get('password')?.errors?.['required']">password is required</div>
                     <div *ngIf="registerForm.get('password')?.errors?.['invalidPassword']">password is not strong enough</div>
-                </div>
-            </div>
-            <div formGroupName="additional_properties" class="additional_properties">
-                <div formGroupName="address">
-                    <div class="form-control">
-                        <label for="city">City <span>*</span></label>
-                        <input 
-                            type="text" 
-                            placeholder="Enter your city" 
-                            formControlName="city"
-                            required
-                            id="city"
-                        >
-                        <div 
-                            class="error"
-                            *ngIf="registerForm.get('city')?.invalid && (registerForm.get('city')?.touched || registerForm.get('city')?.dirty)"
-                        >
-                            <div *ngIf="registerForm.get('city')?.errors?.['required']">city is required</div>
-                            <div *ngIf="registerForm.get('city')?.errors?.['invalidName']">must contain only alphabets</div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <button type="submit" [disabled]="registerForm.invalid || loading">Register</button>
