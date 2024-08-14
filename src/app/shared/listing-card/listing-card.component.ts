@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { HomeData, HomeSearchResult, Result } from '../../interface/home-listing';
+import { Result } from '../../interface/home-listing';
 
 @Component({
   selector: 'app-listing-card',
