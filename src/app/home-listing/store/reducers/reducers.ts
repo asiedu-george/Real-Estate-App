@@ -5,7 +5,7 @@ import * as HomeListingsAction from '../actions/actions'
 export const initialState: HomeListingState = {
     isLoading: false,
     list: null,
-    error: null
+    error: null,
 }
 
 export const listingReducers = createReducer(
@@ -19,6 +19,7 @@ export const listingReducers = createReducer(
         ...state,
         isLoading: false,
         list: lists,
+        duplicateList: lists
     })),
     on(HomeListingsAction.homeListingFailure, (state, action) => ({
         ...state,
