@@ -7,11 +7,13 @@ import {SharedModule} from "../shared/shared.module";
 import { PropertiesComponent } from './properties/properties.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LandingPageModule } from '../landing-page/landing-page.module';
+import { ListingDetailsComponent } from './listing-details/listing-details.component';
 
 @NgModule({
   declarations: [
     HomeListingsComponent,
-    PropertiesComponent
+    PropertiesComponent,
+    ListingDetailsComponent
   ],
   imports: [
     CommonModule,
