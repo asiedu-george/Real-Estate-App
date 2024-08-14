@@ -29,12 +29,7 @@ export class RegisterComponent {
       first_name: ['', [Validators.required, nameValidator()]],
       last_name: ['', [Validators.required, nameValidator()]],
       email: ['', [Validators.required, emailValidator()]],
-      password: ['', [Validators.required, passwordValidator()]],
-      additional_properties: this.fb.group({
-        address: this.fb.group({
-          city: ['', [Validators.required, nameValidator()]]
-        })
-      })
+      password: ['', [Validators.required, passwordValidator()]]
     })
   }
 
