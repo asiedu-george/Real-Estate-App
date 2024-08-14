@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { HomeData, HomeListingResponse } from '../../interface/home-listing';
-import { DescriptionData } from '../../interface/listing-description';
+import { ListingDescription } from '../../interface/listing-description';
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +57,7 @@ export class HomeListingService {
     return this.http.post<HomeData>(`${this.rapidApi}properties/v3/list`, body);
   }
 
-  getHomeListingDescription(property_id: string, listing_id?: string) {
-    return this.http.get<DescriptionData>(`${this.rapidApi}properties/v3/detail?${property_id}&${listing_id}`)
+  getHomeListingDescription(property_id: string) {
+    return this.http.get<ListingDescription>(`${this.rapidApi}properties/v3/detail?property_id=${property_id}`)
   }
 }
