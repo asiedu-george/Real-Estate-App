@@ -11,9 +11,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrl: './properties.component.scss'
 })
 export class PropertiesComponent implements OnInit {
-  isLoading =  this.store.selectSignal(selectIsLoading)
-  error = this.store.selectSignal(SelectError)
-  listings$ = this.store.select(selectListings)
+  public isLoading =  this.store.selectSignal(selectIsLoading)
+  public error = this.store.selectSignal(SelectError)
+  public listings$ = this.store.select(selectListings)
   
   constructor(
     private store: Store<HomeListingState>,
