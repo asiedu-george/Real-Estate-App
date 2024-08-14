@@ -1,0 +1,147 @@
+@import '../../../styles.scss';
+
+.listing-details-container {
+    max-width: 100%;
+    height: auto;
+
+    .loading {
+        color: $white;
+        font-size: 1.25rem;
+    }
+
+    .listing-details {
+        width: 100%;
+        display: flex;
+        gap: 1.5rem;
+        padding: 1rem 3rem;
+
+        .details-content {
+            width: 75%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            .details-images {
+                max-width: 100%;
+    
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            .details-description {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+
+                .content {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+
+                    .status {
+                        @include flex-center;
+                        gap: 0.5rem;
+
+                        span {
+                            width: 1.25rem;
+                            height: 1.25rem;
+                            border: none;
+                            border-radius: 50%;
+                            background-color: $orange;
+                        }
+
+                        h4 {
+                            font-weight: 400;
+                            font-size: 0.875rem;
+                        }
+                    }
+
+                    .description {
+                        @include justify-between;
+
+                        .details {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.625rem;
+
+                            h2 {
+                                font-weight: 700;
+                                font-size: 1.5rem;
+                            }
+
+                            h5 {
+                                font-weight: 400;
+                                font-size: 1.25rem;
+                            }
+
+                            span {
+                                background-color: #e2f1fb;
+                                border: none;
+                                border-radius: 0.5rem;
+                                padding: 0.5rem 1rem;
+                            }
+                        }
+
+                        .baths {
+                            @include flex-center;
+                            gap: 0.875rem;
+
+                            span {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 0.25rem;
+
+                                h2 {
+                                    font-size: 1.25rem;
+                                    font-weight: 600;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .street-view {
+                    max-width: 100%;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+        }
+
+        .questions {
+            @include justify-center;
+            flex-direction: column;
+            padding: 3rem 1.5rem;
+            border: 1px solid $primary;
+            background-color: $white;
+            width: 25%;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+
+            span {
+                text-align: center;
+                color: $primary;
+
+                p {
+                    font-size: 0.875rem;
+                    font-weight: 400;
+
+                    strong {
+                        font-weight: 600;
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
