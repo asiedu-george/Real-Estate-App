@@ -1,27 +1,36 @@
 <div class="listing-card" routerLink="{{listing().property_id}}">
-    <div class="hero-img" [style.backgroundImage]="'url(' + listing().primary_photo.href + ')'">
-    </div>
+    <img [src]="listing().primary_photo?.href" class="listing-img" alt="">
     <div class="sale_type">
-        <button type="button" class="btn">{{listing().status}}</button>
+        <button 
+            type="button" 
+            class="btn" 
+            [ngClass]="{
+                'sold': listing().status === 'sold',
+                'for_rent': listing().status === 'for_rent',
+                'for_sale': listing().status === 'for_sale'
+            }"
+        >
+            {{listing().status}}
+        </button>
     </div>
     <div class="card-content">
         <h6>{{listing().description.type | sentenceCase}}</h6>
         <h6 class="price">{{listing().list_price | currency}}</h6>
         <span class="street">
-            <img ngSrc="location.svg" width="25" height="14.2" alt="location-icon" priority>
+            <img src="location.svg" alt="location-icon">
             <p>{{listing().location.address.line}}</p>
         </span>
         <div class="details">
             <span>
-                <img ngSrc="bed.svg" width="25" height="14.2" alt="bed-icon" priority>
+                <img src="bed.svg" alt="bed-icon">
                 <p>{{listing().description.beds}}</p>
             </span>
             <span>
-                <img ngSrc="bath.svg" width="25" height="14.2" alt="bath-icon" priority>
+                <img src="bath.svg" alt="bath-icon">
                 <p>{{listing().description.baths}}</p>
             </span>
             <span>
-                <img ngSrc="copy.svg" width="25" height="14.2" alt="copy-icon" priority>
+                <img src="copy.svg" alt="copy-icon">
                 <p>{{listing().description.sqft}} sqft</p>
             </span>
         </div>
