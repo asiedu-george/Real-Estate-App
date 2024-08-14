@@ -1,0 +1,90 @@
+<div class="listing-details-container">
+    <app-nav-header/>
+
+    @if (isLoading()) {
+        <ngx-spinner
+          bdColor="rgba(0, 0, 0, 0.8)"
+          size="large"
+          color="#fff"
+          type="line-scale-pulse-out"
+        >
+            <p class="loading">Loading...</p>
+        </ngx-spinner>
+    }
+
+    <ng-container *ngIf="!isLoading()">
+        <div *ngIf="details$ | async as details">
+            <div class="listing-details">
+                <div class="details-content">
+                    <div class="details-images">
+                        <app-carousel
+                            [images]="getImageUrls(details)"
+                        />
+                    </div>
+                    <div class="details-description">
+                        <div class="content">
+                            <div class="status">
+                                <span></span>
+                                <h4>{{details.home.status | sentenceCase}}</h4>
+                            </div>
+                            <div class="description">
+                                <div class="details">
+                                    <h2>{{details.home.list_price | currency}}</h2>
+                                    <h5>
+                                        {{details.home.location.address.line}}, 
+                                        {{details.home.location.address.city}}, 
+                                        {{details.home.location.address.state_code}} 
+                                        {{details.home.location.address.postal_code}}
+                                    </h5>
+                                    <span>
+                                        <p>
+                                            Est. payment: <strong>{{details.home.mortgage.estimate.monthly_payment | currency}}</strong>
+                                        </p>
+                                    </span>
+                                </div>
+                                <div class="baths">
+                                    <span>
+                                        <h2>{{details.home.description.beds}}</h2>
+                                        <p>beds</p>
+                                    </span>
+                                    <span>
+                                        <h2>{{details.home.description.baths}}</h2>
+                                        <p>baths</p>
+                                    </span>
+                                    <span>
+                                        <h2>{{details.home.description.sqft}}</h2>
+                                        <p>sqft</p>
+                                    </span>
+                                    <span>
+                                        <h2>{{details.home.description.stories}}</h2>
+                                        <p>stories</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="description-history">
+                                <span>
+                                    <img src="home.svg" alt="home-icon">
+                                    <p>{{details.home.description.type | sentenceCase}}</p>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="street-view">
+                            <img [src]="details.home.location.street_view_url" alt="street-view">
+                        </div>
+                    </div>
+                </div>
+                <div class="questions">
+                    <img src="questions.jpg" alt="questions-illustration">
+                    <span>
+                        <p>Have any questions?</p>
+                        <p>We'll connect you with an agent</p>
+                        <p>
+                            Call us at 
+                            <strong>{{details.home.lead_attributes.opcity_lead_attributes.local_phone}}</strong>
+                        </p>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>
