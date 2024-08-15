@@ -14,14 +14,21 @@ export class ListingEffects {
     getListings$ = createEffect(() =>
         this.actions$.pipe(
             ofType(HomeListingsAction.getHomeListing),
-            mergeMap(() => {
-                return this.homeListingService.getForSaleListing().pipe(
-                    map(({data}) => HomeListingsAction.homeListingSuccess({lists: data})),
+            mergeMap((action) => {
+                return this.homeListingService.getAllListings(action.filters).pipe(
+                    map((response) => {
+                        if(response && response.data) {
+                            return HomeListingsAction.homeListingSuccess({ lists: response.data})
+                        } else {
+                            throw new Error('No data content')
+                        }
+                    }),
                     catchError((error) => 
-                        of(HomeListingsAction.homeListingFailure({ error: error.message }))
+                        of(HomeListingsAction.homeListingFailure({error: error}))
                     )
                 )
-            })
+            } 
+            ),
         )
     )
 }
