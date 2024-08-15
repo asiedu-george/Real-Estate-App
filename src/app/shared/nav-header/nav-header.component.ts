@@ -41,10 +41,6 @@ export class NavHeaderComponent implements OnInit {
     this.dropdownOpen = !this.dropdownOpen
   }
 
-  accountSettings(): void {
-    this.dropdownOpen = false
-  }
-
   logout(): void {
     this.dropdownOpen = false
     this.authService.logout()
