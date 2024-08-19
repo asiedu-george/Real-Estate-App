@@ -16,7 +16,9 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token = store.selectSignal(selectLoginToken)
 
   const refreshTokenUrl = `${authUrl}user/refresh-token`
-  if(req.url === refreshTokenUrl) return next(req)
+  if(req.url.startsWith(refreshTokenUrl)) {
+    return next(req)
+  }
 
   if(token()) {
     try {
