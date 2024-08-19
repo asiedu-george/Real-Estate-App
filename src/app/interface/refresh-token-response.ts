@@ -1,5 +1,5 @@
 export interface RefreshTokenResponse {
-    additionalProp1: string,
-    additionalProp2: string,
-    additionalProp3: string
+    login_token: string,
+    message: string,
+    refresh_token: string
 }
