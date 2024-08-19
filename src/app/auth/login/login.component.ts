@@ -3,10 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { emailValidator } from '../../validators/emailValidator';
 import { passwordValidator } from '../../validators/passwordValidator';
 import { Login } from '../../interface/login';
-import { AuthService } from '../service/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { NgToastService } from 'ng-angular-popup';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { LoginSate } from '../../home-listing/store/state/state';
+import { selectIsLoading } from '../store/login.selectors';
+import { login } from '../store/login.actions';
 
 @Component({
   selector: 'app-login',
@@ -16,14 +17,12 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   public loginForm: FormGroup
   public showPassword: boolean = false
-  public loading: boolean = false
+  public loading = this.store.selectSignal(selectIsLoading)
 
   constructor(
     private fb: FormBuilder, 
     private spinner: NgxSpinnerService,
-    private router: Router,
-    private toast: NgToastService,
-    private authService: AuthService) {
+    private store: Store<LoginSate>) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, emailValidator()]],
       password: ['', [Validators.required, passwordValidator()]]
@@ -35,25 +34,10 @@ export class LoginComponent {
       return
     }
 
-    this.loading = true
     this.spinner.show()
     const formData: Login = this.loginForm.value
 
-    this.authService.login(formData).subscribe({
-      next: (response) => {
-        this.loading = false
-        this.toast.success(response.message, 'Success', 5000)
-        this.loginForm.reset()
-        setTimeout(() => {
-          this.spinner.hide()
-        }, 3000)
-      },
-      error: (err) => {
-        this.loading = false
-        this.toast.danger(err.error, 'Error', 5000)
-        this.spinner.hide()
-      }
-    })
+    this.store.dispatch(login(formData))
   }
 
   toggleShowPassword(): void {
