@@ -1,34 +1,30 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/service/auth.service';
-import { jwtDecode } from 'jwt-decode';
-import { UserDetails } from '../../interface/user-profile';
-import { LoginResponse } from '../../interface/login';
+import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { LoginSate } from '../../home-listing/store/state/state';
+import { logout } from '../../auth/store/login.actions';
 
 @Component({
   selector: 'app-nav-header',
   templateUrl: './nav-header.component.html',
   styleUrl: './nav-header.component.scss'
 })
-export class NavHeaderComponent implements OnInit {
+export class NavHeaderComponent implements OnInit, OnDestroy {
   public dropdownOpen: boolean = false
   public userInitials: string = ''
   public username: string = ''
   public email: string = ''
+  private userProfileSubscription: Subscription | undefined;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private store: Store<LoginSate>) {}
 
   ngOnInit(): void {
-    this.authService.refreshStoredUser();
-    this.authService.activeUser.subscribe((user: LoginResponse | null) => {
-      if (user) {
-        const token = user.login_token
-        const decodedToken: UserDetails = jwtDecode<UserDetails>(token)
-
-        this.username = `${decodedToken.firstname} ${decodedToken.lastname}`;
-        this.userInitials = this.getInitials(this.username);
-        this.email = decodedToken.email
-      }
-    });
+    this.userProfileSubscription = this.authService.getUserProfile().subscribe((response) => {
+      this.username = `${response.first_name} ${response.last_name}`
+      this.userInitials = this.getInitials(this.username)
+      this.email = response.email
+    })
   }
 
   getInitials(name: string): string {
@@ -43,7 +39,7 @@ export class NavHeaderComponent implements OnInit {
 
   logout(): void {
     this.dropdownOpen = false
-    this.authService.logout()
+    this.store.dispatch(logout())
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -53,6 +49,12 @@ export class NavHeaderComponent implements OnInit {
       header?.classList.add('scrolled')
     } else {
       header?.classList.remove('scrolled')
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.userProfileSubscription) {
+      this.userProfileSubscription.unsubscribe();
     }
   }
 }
