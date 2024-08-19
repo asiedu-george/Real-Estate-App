@@ -8,6 +8,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LandingPageModule } from '../landing-page/landing-page.module';
 import { ListingDetailsComponent } from './listing-details/listing-details.component';
 import { FormsModule } from '@angular/forms';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     NgOptimizedImage,
     AsyncPipe,
     NgxSpinnerModule,
-    LandingPageModule
+    LandingPageModule,
+    MatTabsModule
   ]
 })
 export class HomeListingModule { }
