@@ -5,9 +5,25 @@ $orange: #EB664E;
 $secondary: #1F4B43;
 $header: #f9fafb;
 
+:root {
+    --white: #fff;
+    --primary: #1A1A1A;
+    --yellow: #E7C873;
+    --orange: #EB664E;
+    --secondary: #1F4B43;
+    --header: #f9fafb;
+    --span: #ededed;
+    --even: #b7d2fd;
+}
+
 @mixin flex-center {
     display: flex;
     align-items: center;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
 }
 
 @mixin justify-center {
@@ -20,6 +36,35 @@ $header: #f9fafb;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+@mixin show-more {
+    width: fit-content;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 0 0.625rem;
+    background-color: inherit;
+    border: none;
+    text-decoration: underline;
+}
+
+@mixin grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+}
+
+@mixin ratings {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border: none;
+    border-radius: 50%;
+    font-weight: 400;
+    font-size: 0.938rem;
 }
 
 * {
@@ -41,18 +86,42 @@ img {
 }
 
 body {
-    background-color: $white;
+    background-color: var(--white);
 }
 
 body[data-theme='dark'] {
-    background-color: $primary;
-    color: $white;
-    filter: brightness(0) invert(1);
+    background-color: var(--primary);
 }
 
 body[data-theme='light'] {
-    background-color: $white;
-    color: $primary;
+    --background-color: var(--white);
+    --color: var(--primary);
+    --testimonial: var(--header);
+    --border: var(--secondary);
+    --status-hover: var(--header);
+    --status-hover-color: var(--primary);
+    --btn-color: var(--primary);
+    --btn-hover: var(--white);
+    --btn-border: var(--primary);
+    --box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+    --span-color: var(--span);
+    --rating: var(--even);
+}
+
+body[data-theme='dark'] {
+    --background-color: var(--primary);
+    --color: var(--white);
+    --filter: brightness(0) invert(1);
+    --testimonial: var(--primary);
+    --border: var(--white);
+    --status-hover: var(--primary);
+    --status-hover-color: var(--primary);
+    --btn-color: var(--orange);
+    --btn-hover: var(--primary);
+    --btn-border: var(--orange);
+    --box-shadow: 0 2px 2px rgba(241, 233, 233, 0.24);
+    --span-color: var(--orange);
+    --rating: var(--even);
 }
 
 a {

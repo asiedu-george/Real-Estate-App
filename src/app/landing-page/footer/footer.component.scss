@@ -5,6 +5,7 @@ footer {
     flex-direction: column;
     height: 6.25rem;
     position: relative;
+    background-color: var(--background-color);
 
     .footer-content {
         width: 60%;
@@ -13,11 +14,13 @@ footer {
         h6 {
             font-size: 0.875rem;
             font-weight: 600;
+            color: var(--color);
         }
 
 
         .logo {
             max-width: 8.125rem;
+            filter: var(--filter);
         }
 
         .social-icons a {

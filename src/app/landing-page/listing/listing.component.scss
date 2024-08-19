@@ -5,7 +5,7 @@
     max-width: 100%;
     flex-direction: column;
     padding: 6% 10%;
-    color: $primary;
+    color: var(--color);
     gap: 2rem;
 
     .header {
@@ -49,6 +49,7 @@
 
         img {
             width: 0.875rem;
+            filter: var(--filter);
         }
     }
 }

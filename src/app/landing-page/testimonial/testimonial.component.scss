@@ -7,7 +7,7 @@
     flex-direction: column;
     padding: 6% 10%;
     gap: 4rem;
-    background-color: $header;
+    background-color: var(--testimonial);
 
     .header {
         text-align: center;
@@ -16,10 +16,12 @@
             text-transform: capitalize;
             font-size: 2rem;
             margin-bottom: 0.3rem;
+            color: var(--color);
         }
 
         p {
             font-size: 0.875rem;
+            color: var(--color);
         }
     }
 
