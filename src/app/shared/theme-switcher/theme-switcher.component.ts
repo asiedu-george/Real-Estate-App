@@ -21,5 +21,5 @@ export class ThemeSwitcherComponent implements OnInit {
     this.storage.value.set(newTheme);
     this.isDark = newTheme === 'dark';
     document.body.setAttribute('data-theme', newTheme);
-}
+  }
 }
