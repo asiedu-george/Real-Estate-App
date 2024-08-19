@@ -4,46 +4,44 @@ import { AuthService } from '../../auth/service/auth.service';
 import { authEnv } from '../../../environments/environment.development';
 import { jwtDecode } from 'jwt-decode';
 import { constants } from '../../constants';
+import { Store } from '@ngrx/store';
+import { selectLoginToken } from '../../auth/store/login.selectors';
+import { from, switchMap } from 'rxjs';
+import { loginSuccess } from '../../auth/store/login.actions';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService)
+  const store = inject(Store)
   const authUrl = authEnv.baseUrl
+  const token = store.selectSignal(selectLoginToken)
 
-  const refreshTokenUrl: string = `${authUrl}/user/refresh-token`
+  const refreshTokenUrl = `${authUrl}user/refresh-token`
   if(req.url === refreshTokenUrl) return next(req)
-  
-  const activeUser: string | undefined = authService.activeUserValue?.login_token
-  const token: string | undefined = activeUser
 
-  if(token) {
+  if(token()) {
     try {
-      let decodedToken = jwtDecode(token)
+      let decodedToken = jwtDecode(token() as string)
       const isExpired: boolean = decodedToken?.exp ? 
         decodedToken.exp < Date.now() / 1000 : false
       
       if(isExpired) {
-        authService.refreshToken(token).subscribe((newToken) => {
-          const user: string | null = localStorage.getItem('activeUser')
-          if(user) {
-            const storedUser = JSON.parse(user)
-            const newUser = {
-              ...storedUser, 
-              login_token: newToken.additionalProp1
-            }
-            authService.storedUserData(newUser)
-          }
-          const reqClone = req.clone({
-            setHeaders: {
-              'Authorization': `Bearer ${newToken.additionalProp1}`,
-              'X-APN': constants.apnKey
-            }
+        return from(authService.refreshToken().pipe(
+          switchMap((res) => {
+            store.dispatch(loginSuccess({loggedIn: res}))
+            const newToken = res.login_token
+            const reqCLone = req.clone({
+              setHeaders: {
+                'Authorization': `Bearer ${newToken}`,
+                'X-APN': constants.apnKey,
+              }
+            })
+            return next(reqCLone)
           })
-          return next(reqClone)
-        })
+        ))
       } else {
         const reqClone = req.clone({
           setHeaders: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer ${token()}`,
             'X-APN': constants.apnKey
           }
         })
