@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
       const auth = JSON.parse(retrievedState)
       this.store.dispatch(getStoreData(auth));
     }
-    localStorage.clear()
+    localStorage.removeItem('authState')
   }
-  
 }
