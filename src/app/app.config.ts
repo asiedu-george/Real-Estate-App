@@ -15,6 +15,8 @@ import { listingReducers } from './home-listing/store/reducers/reducers';
 import { ListingEffects } from './home-listing/store/effects/effects';
 import { listingDescriptionReducers } from './home-listing/store/reducers/details.reducers';
 import { ListingDetailsEffects } from './home-listing/store/effects/details.effects';
+import { loginReducer } from './auth/store/login.reducers';
+import { LoginEffects } from './auth/store/login.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,8 +28,16 @@ export const appConfig: ApplicationConfig = {
     ])),
     provideSpinnerConfig({ type: 'ball-scale-multiple' }),
     importProvidersFrom(NgToastModule),
-    provideStore({'listings': listingReducers, 'details': listingDescriptionReducers}),
-    provideEffects([ListingEffects, ListingDetailsEffects]),
+    provideStore({
+      'listings': listingReducers, 
+      'details': listingDescriptionReducers,
+      'login': loginReducer
+    }),
+    provideEffects([
+      ListingEffects, 
+      ListingDetailsEffects,
+      LoginEffects
+    ]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
   ]
 }
