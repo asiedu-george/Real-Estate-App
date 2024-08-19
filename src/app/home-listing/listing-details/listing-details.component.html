@@ -250,7 +250,9 @@
 
                             <h2>Noise</h2>
                             <div class="local">
-                                <span class="rating"><strong>{{details.home.local.noise.score || 0}}</strong>/100</span>
+                                <span class="rating">
+                                    <strong>{{details.home.local.noise.score || 0}}</strong>/100
+                                </span>
                                 <p *ngFor="let category of details.home.local.noise.noise_categories">
                                     {{ category.type | sentenceCase }}: {{ category.text | sentenceCase }}
                                 </p>
@@ -258,7 +260,9 @@
 
                             <h2>Flood</h2>
                             <div class="local">
-                                <span class="rating"><strong>{{details.home.local.flood.flood_factor_score || 0}}</strong>/100</span>
+                                <span class="rating">
+                                    <strong>{{details.home.local.flood.flood_factor_score || 0}}</strong>/100
+                                </span>
                                 <p>FEMA Zone: {{ details.home.local.flood.fema_zone.join(', ') }}</p>
                             </div>
                         </div>
@@ -269,7 +273,7 @@
     </div>
 </div>
 
-<div class="recently-viewed" *ngIf="recentlyViewedListings.length">
+<div class="recently-viewed" *ngIf="recentlyViewedListings.length > 0">
     <h2>Recently Viewed Listings</h2>
     <div class="listing-card">
         @for (list of recentlyViewedListings; track list.property_id) {
@@ -277,3 +281,4 @@
         }
     </div>
 </div>
+<app-footer/>
