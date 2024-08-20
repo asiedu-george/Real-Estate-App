@@ -7,7 +7,7 @@ import { constants } from '../../../environments/constants';
 import { Store } from '@ngrx/store';
 import { selectLoginToken } from '../../auth/store/login.selectors';
 import { from, switchMap } from 'rxjs';
-import { loginSuccess } from '../../auth/store/login.actions';
+import { loginSuccess, logout } from '../../auth/store/login.actions';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService)
@@ -50,10 +50,10 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         return next(reqClone)
       }
     } catch(e) {
-      authService.logout()
+      store.dispatch(logout())
     }
   } else {
-    authService.logout()
+    store.dispatch(logout())
   }
 
   return next(req);
