@@ -42,19 +42,17 @@ export class AuthService {
 
   validateUser(): Observable<{ message: string }> {
     return this.http.get<{ message: string }>(`${this.authUrl}user/validate`)
-    .pipe(retry(2));
   }
 
   getUserProfile(): Observable<UserProfile> {
     return this.http.get<UserProfile>(`${this.authUrl}user/profile`)
-    .pipe(retry(2));
   }
 
   refreshToken() {
     return this.http.post<RefreshTokenResponse>(
       `${this.authUrl}user/refresh-token`,
       { refresh_token: this.token() }
-    ).pipe(retry(2))
+    )
   }
 
   logout(): void {
