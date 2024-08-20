@@ -7,6 +7,7 @@ import { Register } from '../../interface/register';
 import { AuthService } from '../service/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgToastService } from 'ng-angular-popup';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -22,18 +23,13 @@ export class RegisterComponent {
     private fb: FormBuilder, 
     private spinner: NgxSpinnerService,
     private toast: NgToastService,
+    private router: Router,
     private authService: AuthService) {
     this.registerForm = this.fb.group({
       first_name: ['', [Validators.required, nameValidator()]],
       last_name: ['', [Validators.required, nameValidator()]],
       email: ['', [Validators.required, emailValidator()]],
-      password: ['', [Validators.required, passwordValidator()]],
-      additional_properties: this.fb.group({
-        address: this.fb.group({
-          city: ['', [Validators.required, nameValidator()]]
-        }),
-        profile_picture: ['', Validators.required]
-      })
+      password: ['', [Validators.required, passwordValidator()]]
     })
   }
 
@@ -49,24 +45,22 @@ export class RegisterComponent {
     this.authService.register(formData).subscribe({
       next: (response) => {
         this.loading = false
-        this.toast.success(response.message, 'Success', 3000)
+        this.toast.success(response.message, 'Success', 5000)
         this.registerForm.reset()
         setTimeout(() => {
           this.spinner.hide()
-        }, 2000)
-        console.log('response',response)
+          this.router.navigateByUrl('/auth/login')
+        }, 3000)
       },
       error: (err) => {
         this.loading = false
-        this.toast.danger(err.error?.message, 'Error', 3000)
+        this.toast.danger(err.error, 'Error', 5000)
         this.spinner.hide()
-        console.error('error', err)
       }
     })
   }
 
   toggleShowPassword(): void {
     this.showPassword = !this.showPassword
-    console.log('Password visibility toggled:', this.showPassword);
   }
 }

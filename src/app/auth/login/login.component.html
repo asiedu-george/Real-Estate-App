@@ -1,14 +1,14 @@
 <div class="container">
+   @if (loading()) {
     <ngx-spinner
-            bdColor="rgba(0, 0, 0, 0.8)"
-            size="large"
-            color="#fff"
-            type="line-scale-pulse-out"
-            [fullScreen] = "true"
-            *ngIf="loading"
-        >
-            <p class="loading">Loading...</p>
+        bdColor="rgba(0, 0, 0, 0.8)"
+        size="large"
+        color="#fff"
+        type="line-scale-pulse-out"
+    >
+        <p class="loading">Loading...</p>
     </ngx-spinner>
+   }
     <div class="image-bg">
         <img src="login.jpg" alt="login-image">
     </div>
@@ -57,7 +57,7 @@
                     <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">password is not strong enough</div>
                 </div>
             </div>
-            <button type="submit">Login</button>
+            <button type="submit" [disabled]="loginForm.invalid || loading()">Login</button>
             <p>
                 Don't have an account? 
                 <span routerLink="/auth/register">Register</span>

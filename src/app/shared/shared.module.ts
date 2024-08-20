@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import {CommonModule, CurrencyPipe, NgOptimizedImage} from '@angular/common';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { ListingCardComponent } from './listing-card/listing-card.component';
 import { BackToTopComponent } from './back-to-top/back-to-top.component';
 import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.component';
-
-
+import { NavHeaderComponent } from './nav-header/nav-header.component';
+import {RouterLink} from "@angular/router";
+import { SentenceCasePipe } from './pipe/sentence-case.pipe';
 
 @NgModule({
   declarations: [
@@ -14,18 +15,24 @@ import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.componen
     CarouselComponent,
     ListingCardComponent,
     BackToTopComponent,
-    ThemeSwitcherComponent
+    ThemeSwitcherComponent,
+    NavHeaderComponent,
+    SentenceCasePipe
   ],
   imports: [
     CommonModule,
-    CurrencyPipe
+    CurrencyPipe,
+    RouterLink,
+    NgOptimizedImage
   ],
   exports: [
-    CarouselComponent, 
-    SpinnerComponent, 
+    CarouselComponent,
+    SpinnerComponent,
     ListingCardComponent,
     BackToTopComponent,
-    ThemeSwitcherComponent
+    ThemeSwitcherComponent,
+    NavHeaderComponent,
+    SentenceCasePipe
   ]
 })
 export class SharedModule { }

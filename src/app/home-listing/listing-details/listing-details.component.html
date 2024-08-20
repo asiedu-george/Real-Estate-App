@@ -1,0 +1,279 @@
+<div>
+    <app-nav-header/>
+
+    @if (isLoading()) {
+        <ngx-spinner
+          bdColor="rgba(0, 0, 0, 0.8)"
+          size="large"
+          color="#fff"
+          type="line-scale-pulse-out"
+        >
+            <p class="loading">Loading...</p>
+        </ngx-spinner>
+    }
+
+    <div *ngIf="details$ | async as details" class="details-container">
+        <div class="tab-images">
+            <div class="container" [class.show]="expandedImgSrc">
+                <span (click)="closeExpandedImage()" class="closebtn">&times;</span>
+                <img [src]="expandedImgSrc" alt="expandedImgAlt">
+                <div id="imgtext">{{ expandedImgAlt }}</div>
+            </div> 
+            <div class="row">
+                <div class="column" *ngFor="let img of details.home.photos | slice:0:12">
+                  <img [src]="img.href" [alt]="getAltText(img)" aria-label="image" (click)="expandImage(img)">
+                </div>
+            </div>
+        </div>  
+        <div class="description-container">
+            <div class="description">
+                <div class="status">
+                    <span></span>
+                    <h4>{{details.home.status | sentenceCase}}</h4>
+                </div>
+                <div class="details">
+                    <div class="price">
+                        <h2>{{details.home.list_price | currency}}</h2>
+                        <ng-container *ngIf="details.home.mortgage" class="est">
+                            <p>
+                                Est. payment: <strong>{{details.home.mortgage.estimate.monthly_payment | currency}}/mo</strong>
+                            </p>
+                        </ng-container>
+                    </div>
+                    <div class="baths">
+                        <span>
+                            <h2>{{details.home.description.beds}}</h2>
+                            <p>beds</p>
+                        </span>
+                        <span>
+                            <h2>{{details.home.description.baths}}</h2>
+                            <p>baths</p>
+                        </span>
+                        <span>
+                            <h2>{{details.home.description.sqft}}</h2>
+                            <p>sqft</p>
+                        </span>
+                        <span>
+                            <h2>{{details.home.description.lot_sqft}}</h2>
+                            <p>sqft lot</p>
+                        </span>
+                        <span>
+                            <h2>{{details.home.description.stories}}</h2>
+                            <p>stories</p>
+                        </span>
+                    </div>
+                    <h5 class="location">
+                        {{details.home.location.address.line}}, 
+                        {{details.home.location.address.city}}, 
+                        {{details.home.location.address.state_code}} 
+                        {{details.home.location.address.postal_code}}
+                    </h5>
+                    <div class="history">
+                        <div class="wrap">
+                            <span>
+                                <h4>{{details.home.description.type | sentenceCase}}</h4>
+                                <p>Property type</p>
+                            </span>
+                            <span>
+                                <h4>{{details.home.description.year_built}}</h4>
+                                <p>Year built</p>
+                            </span>
+                            <span>
+                                <h4>{{details.home.price_per_sqft | currency}}</h4>
+                                <p>Price per sqft</p>
+                            </span>
+                            <span *ngIf="details.home.hoa">
+                                <h4>{{details.home.hoa.fee | currency}}/mo</h4>
+                                <p>HOA fees</p>
+                            </span>
+                            <span *ngIf="details.home.description.garage">
+                                <h4>{{details.home.description.garage}} cars</h4>
+                                <p>Garage</p>
+                            </span>
+                            <span *ngIf="details.home.days_on_market">
+                                <h4>{{details.home.days_on_market}}</h4>
+                                <p>On Realtor.com</p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features">
+                <mat-tab-group animationDuration="500ms">
+                    <mat-tab label="About this home">
+                        <div class="about-content">
+                            <h2>What's special</h2>
+                            <h6>ALL SHOWING BY APPOINTMENT ONLY</h6>
+                            <p>
+                                {{ 
+                                    showMore ? details.home.description.text 
+                                    : (details.home.description.text | slice:0:350) + '...' 
+                                }}
+                            </p>
+                            <button type="button" (click)="toggleShowMore()">
+                                {{ showMore ? 'Show less' : 'Show more' }}
+                            </button>
+                            <span class="header">Interior</span>
+                            <div class="interior">
+                                @for (feature of interiorFeatures; track feature.category) {
+                                    <div class="wrapper">
+                                        <h4>{{feature.category}}</h4>
+                                        <ul>
+                                            <li *ngFor="let text of feature.text">{{text}}</li>
+                                        </ul>
+                                    </div>
+                                }
+                            </div>
+                            <span class="header">Exterior</span>
+                            <div class="interior">
+                                @for (feature of exteriorFeatures; track feature.category) {
+                                    <div class="wrapper">
+                                        <h4>{{feature.category}}</h4>
+                                        <ul>
+                                            <li *ngFor="let text of feature.text">{{text}}</li>
+                                        </ul>
+                                    </div>
+                                }
+                            </div>
+                            <span class="header">Community</span>
+                            <div class="interior">
+                                @for (feature of communityFeatures; track feature.category) {
+                                    <div class="wrapper">
+                                        <h4>{{feature.category}}</h4>
+                                        <ul>
+                                            <li *ngFor="let text of feature.text">{{text}}</li>
+                                        </ul>
+                                    </div>
+                                }
+                            </div>
+                            <span class="header">Property Info</span>
+                            <div class="interior">
+                                @for (feature of propertyInfoFeatures; track feature.category) {
+                                    <div class="wrapper">
+                                        <h4>{{feature.category}}</h4>
+                                        <ul>
+                                            <li *ngFor="let text of feature.text">{{text}}</li>
+                                        </ul>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Property History">
+                       <div class="price-history">
+                            <h2>Property price</h2>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Event name</th>
+                                        <th>Price</th>
+                                        <th>Price/Sqft</th>
+                                        <th>Source</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr 
+                                        *ngFor="let price of (showMore ? details.home.property_history : details.home.property_history | slice:0:8)"
+                                    >
+                                        <td>{{price.date | date}}</td>
+                                        <td>{{price.event_name | sentenceCase}}</td>
+                                        <td>{{price.price | currency}}</td>
+                                        @if (price.listing?.description?.sqft) {
+                                            <td>{{price.listing?.description?.sqft | currency}}</td>
+                                        } @else { 
+                                            <td>-</td>
+                                        }
+                                        <td>{{price.source_name}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button *ngIf="details.home.property_history.length > 8" type="button" (click)="toggleShowMore()">
+                                {{ showMore ? 'Show Less' : 'Show More' }}
+                            </button>
+
+                            <h2>Tax history</h2>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>Tax</th>
+                                        <th>Land</th>
+                                        <th>Building</th>
+                                        <th>Total Assessment</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr 
+                                        *ngFor="let tax of (showMore ? details.home.tax_history : details.home.tax_history | slice:0:8)"
+                                    >
+                                        <td>{{tax.year}}</td>
+                                        <td>{{tax.tax | currency}}</td>
+                                        <td>{{tax.assessment.land | currency}}</td>
+                                        <td>{{tax.assessment.building | currency}}</td>
+                                        <td>{{tax.assessment.total | currency}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button *ngIf="details.home.tax_history.length > 8" type="button" (click)="toggleShowMore()">
+                                {{ showMore ? 'Show Less' : 'Show More' }}
+                            </button>
+                       </div>
+                    </mat-tab>
+                    <mat-tab label="Neighborhood">
+                        <div class="neighborhood">
+                            <h2>Nearby schools</h2>
+                            <div 
+                                class="school" 
+                                *ngFor="let school of (showMore ?  details.home.nearby_schools.schools :  details.home.nearby_schools.schools | slice:0:4)"
+                            >
+                                <span class="rating"><strong>{{school.rating || 0}}</strong>/10</span>
+                                <div class="details">
+                                    <h5>{{school.name}}</h5>
+                                    <div class="info">
+                                        <p>{{school.funding_type | sentenceCase}} </p> |
+                                        <p>Grades {{formatGrades(school.grades)}} </p> |
+                                        <p>{{school.distance_in_miles}} miles away</p> |
+                                        <p>{{school.student_count}} students</p>
+                                        <p>Educational level: {{school.education_levels.join(', ') | sentenceCase}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button 
+                                *ngIf="details.home.nearby_schools.schools.length > 4" 
+                                type="button" 
+                                (click)="toggleShowMore()"
+                            >
+                                {{ showMore ? 'Show Less' : 'Show More' }}
+                            </button>
+
+                            <h2>Noise</h2>
+                            <div class="local">
+                                <span class="rating"><strong>{{details.home.local.noise.score || 0}}</strong>/100</span>
+                                <p *ngFor="let category of details.home.local.noise.noise_categories">
+                                    {{ category.type | sentenceCase }}: {{ category.text | sentenceCase }}
+                                </p>
+                            </div>
+
+                            <h2>Flood</h2>
+                            <div class="local">
+                                <span class="rating"><strong>{{details.home.local.flood.flood_factor_score || 0}}</strong>/100</span>
+                                <p>FEMA Zone: {{ details.home.local.flood.fema_zone.join(', ') }}</p>
+                            </div>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="recently-viewed" *ngIf="recentlyViewedListings.length">
+    <h2>Recently Viewed Listings</h2>
+    <div class="listing-card">
+        @for (list of recentlyViewedListings; track list.property_id) {
+            <app-listing-card [listing]="list" />
+        }
+    </div>
+</div>

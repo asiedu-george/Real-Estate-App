@@ -1,16 +1,21 @@
 @import '../../../styles.scss';
 
 .listing-card {
-    max-width: 100%;
-    position: relative;
-    height: auto;
     border: none;
-    border-radius: 0.625rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.625rem 0.625rem 0 0;
+    transition: all .3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+    position: relative;
 
-    .hero-img {
-        width: 100%;
-        border-radius: 0.625rem;
-        transition: .3s ease;
+    &:active, &:hover {
+        box-shadow: 0 6px 6px rgba(0,0,0,0.1);
+    }
+
+    .listing-img {
+        border-radius: 0.625rem 0.625rem 0 0;
     }
 
     .sale_type {
@@ -21,8 +26,6 @@
         gap: 0.625rem;
 
         .btn {
-            background-color: $primary;
-            color: $white;
             padding: 0.4rem 0.75rem;
             border: none;
             border-radius: 3.125rem;
@@ -37,29 +40,29 @@
                 color: $primary;
                 border: 2px solid $primary;
             }
-        }
 
-        .yellow-color {
-            background-color: $yellow;
-            color: $primary;
-
-            &:hover {
-                background-color: $primary;
+            &.sold {
+                color: $primary;
+                background-color: $orange;
+            }
+          
+              &.for_rent {
+                color: $primary;
+                background-color: $yellow;
+            }
+          
+              &.for_sale {
                 color: $white;
-                border: 2px solid $yellow;
+                background-color: $primary;
             }
         }
     }
 
     .card-content {
-        width: 93%;
-        position: absolute;
-        bottom: 5%;
-        left: 3%;
+        width: 100%;
         background-color: $white;
         border: none;
-        border-radius: 0.5rem;
-        padding: 1rem;
+        padding: 1rem 0.875rem;
         display: flex;
         flex-direction: column;
         gap: 0.625rem;
@@ -78,38 +81,25 @@
             }
         }
 
+        .price {
+            font-weight: 700;
+            color: $orange;
+            font-size: 1.25rem;
+        }
+
         .details {
             @include justify-between;
 
-            h6 {
-                font-weight: 700;
-                color: $orange;
-                font-size: 1rem;
-            }
+            span {
+                @include flex-center;
+                gap: 0.5rem; 
+                padding: 0 0.625rem;
+                border-right: 1px solid $secondary;
 
-            .details-description {
-                display: flex;
-                align-items: center;
-                gap: 0.625rem;
-
-                span {
-                    @include flex-center;
-                    gap: 0.5rem; 
-                    padding: 0 0.625rem;
-                    border-right: 1px solid $secondary;
-
-                    &:last-child {
-                        border-right: none;
-                    }
+                &:last-child {
+                    border-right: none;
                 }
             }
         }
-    }
-}
-
-@media screen and (mx-width: 998px) {
-    .featured {
-        width: 100%;
-        height: auto;
     }
 }

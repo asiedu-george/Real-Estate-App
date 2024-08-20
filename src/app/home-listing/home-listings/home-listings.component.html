@@ -1,0 +1,161 @@
+<div class="home-listing">
+    <app-nav-header/>
+
+    <div class="filter-container" id="filter">
+        <div class="search">
+            <input 
+                type="text"
+                placeholder="Neighborhood, city, street name"
+                (keyup)="onSearch($event)"
+                [(ngModel)]="search"
+            >
+            <img ngSrc="search.svg" width="20" height="20" alt="search">
+        </div>
+        <div class="status">
+            <div (click)="toggleDropdown('status')" class="status-content">
+                <p>Status</p>
+                <img ngSrc="chevron-down.svg" width="25" height="25" alt="chevron-down" priority>
+            </div>
+            <div *ngIf="dropdowns.status" class="dropdown status-dropdown">
+                <span>
+                    <input 
+                        type="checkbox" 
+                        id="rent"
+                        aria-label="rent"
+                        [value]="Status.FOR_RENT"
+                        [(ngModel)]="forRent" 
+                        name="for_rent"
+                        (ngModelChange)="onStatusFilterChange(Status.FOR_RENT)"
+                    >
+                    <h5>For Rent</h5>
+                </span>
+                <span>
+                    <input 
+                        type="checkbox" 
+                        id="sale"
+                        aria-label="sale"
+                        value="for_sale"
+                        [(ngModel)]="forSale" 
+                        name="for_sale"
+                        (ngModelChange)="onStatusFilterChange(Status.FOR_SALE)"
+                    >
+                    <h5>For Sale</h5>
+                </span>
+                <span>
+                    <input 
+                        type="checkbox" 
+                        id="sold"
+                        aria-label="sold"
+                        value="sold"
+                        [(ngModel)]="sold"
+                        name="sold"
+                        (ngModelChange)="onStatusFilterChange(Status.SOLD)"
+                    >
+                    <h5>Sold</h5>
+                </span>
+            </div>
+        </div>
+        <div class="home-type status">
+            <div (click)="toggleDropdown('homeType')" class="bed-bath-content status-content">
+                <p>Home Type</p>
+                <img ngSrc="chevron-down.svg" width="25" height="25" alt="chevron-down" priority>
+            </div>
+            <div *ngIf="dropdowns.homeType" class="dropdown home-type-dropdown">
+                <div class="home">
+                    <h4>Home Type</h4>
+                    <div class="checkbox">
+                        <span>
+                            <input 
+                                type="checkbox" 
+                                aria-label="apartment" 
+                                (ngModelChange)="onHomeTypesChange(HomeType.APARTMENT)" 
+                                [value]="HomeType.APARTMENT"
+                                [(ngModel)]="apartment" 
+                            >
+                            <h5>Apartment</h5>
+                        </span>
+                        <span>
+                            <input 
+                                type="checkbox" 
+                                aria-label="condo" 
+                                (ngModelChange)="onHomeTypesChange(HomeType.CONDOS)" 
+                                [value]="HomeType.CONDOS"
+                                [(ngModel)]="condos" 
+                            >
+                            <h5>Condos/Coop</h5>
+                        </span>
+                        <span>
+                            <input 
+                                type="checkbox" 
+                                aria-label="multi_family" 
+                                (ngModelChange)="onHomeTypesChange(HomeType.MULTI_FAMILY)" 
+                                [value]="HomeType.MULTI_FAMILY"
+                                [(ngModel)]="multi_family" 
+                            >
+                            <h5>Multi Family</h5>
+                        </span>
+                        <span>
+                            <input 
+                                type="checkbox" 
+                                aria-label="town_homes" 
+                                (ngModelChange)="onHomeTypesChange(HomeType.TOWNHOMES)" 
+                                [value]="HomeType.TOWNHOMES"
+                                [(ngModel)]="townhomes" 
+                            >
+                            <h5>Townhomes</h5>
+                        </span>
+                        <span>
+                            <input 
+                                type="checkbox" 
+                                aria-label="land" 
+                                (ngModelChange)="onHomeTypesChange(HomeType.LAND)" 
+                                [value]="HomeType.LAND"
+                                [(ngModel)]="land" 
+                            >
+                            <h5>Land</h5>
+                        </span>
+                        <span>
+                            <input 
+                                type="checkbox" 
+                                aria-label="duplex_triplex" 
+                                (ngModelChange)="onHomeTypesChange(HomeType.DUPLEX_TRIPLEX)" 
+                                [value]="HomeType.DUPLEX_TRIPLEX"
+                                [(ngModel)]="duplex_triplex" 
+                            >
+                            <h5>Duplex Triplex</h5>
+                        </span>
+                    </div>
+                </div>
+                <div class="btn">
+                    <button type="button" class="apply-btn" (click)="applyFilters()">Apply</button>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="search-btn" (click)="applyFilters()">Search</button>
+    </div> 
+    
+    <div class="outlet">
+        <div class="properties">
+            <h2>Real Estate & Homes For Sale</h2>
+            @if (isLoading()) {
+              <ngx-spinner
+                bdColor="rgba(0, 0, 0, 0.8)"
+                size="large"
+                color="#fff"
+                type="line-scale-pulse-out"
+              >
+                  <p class="loading">Loading...</p>
+              </ngx-spinner>
+            }
+            
+            <div *ngIf="listings$ | async as listings" class="listings">
+              @for (list of listings.home_search.results; track list.listing_id) {
+                <ng-container *ngIf="list.primary_photo?.href">
+                  <app-listing-card [listing]="list"></app-listing-card>
+                </ng-container>
+              }
+            </div>
+          </div>
+    </div>
+</div>
+<app-footer/>

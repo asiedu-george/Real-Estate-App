@@ -24,7 +24,7 @@
 
     .login-container {
         position: absolute;
-        top: 5%;
+        top: 10%;
         right: 5%;
         background-color: $header;
         width: 28.125rem;
@@ -90,6 +90,10 @@
                         cursor: pointer;
                         border: 1px solid $primary;
                     }
+
+                    &:valid {
+                        border: 1.5px solid #039855;
+                    }
                 }
 
                 .error {
@@ -122,6 +126,11 @@
 
                 &:hover {
                     background-color: $secondary;
+                }
+
+                &:disabled {
+                    background-color: #757575;
+                    cursor: not-allowed;
                 }
             }
 
