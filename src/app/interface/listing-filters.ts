@@ -1,13 +1,7 @@
 export interface ListingFilters {
     postal_code: string;
     status: string[];
-    list_price?: Range;
     type?: string[];
-}
-
-export interface Range {
-    min: number, 
-    max?: number
 }
 
 export enum Status {
