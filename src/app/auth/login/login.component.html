@@ -31,10 +31,10 @@
                 >
                 <div 
                     class="error"
-                    *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)"
+                    *ngIf="userEmail?.invalid && (userEmail?.touched || userEmail?.dirty)"
                 >
-                    <div *ngIf="loginForm.get('email')?.errors?.['required']">email is required</div>
-                    <div *ngIf="loginForm.get('email')?.errors?.['email']">invalid email</div>
+                    <div *ngIf="userEmail?.errors?.['required']">email is required</div>
+                    <div *ngIf="userEmail?.errors?.['email']">invalid email</div>
                 </div>
             </div>
             <div class="form-control passsword">
@@ -51,10 +51,10 @@
                 </div>
                 <div 
                     class="error"
-                    *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)"
+                    *ngIf="userPassword?.invalid && (userPassword?.touched || userPassword?.dirty)"
                 >
-                    <div *ngIf="loginForm.get('password')?.errors?.['required']">password is required</div>
-                    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">password is not strong enough</div>
+                    <div *ngIf="userPassword?.errors?.['required']">password is required</div>
+                    <div *ngIf="userPassword?.invalid && loginForm.get('password')?.touched">password is not strong enough</div>
                 </div>
             </div>
             <button type="submit" [disabled]="loginForm.invalid || loading()">Login</button>
