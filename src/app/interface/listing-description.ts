@@ -10,34 +10,30 @@ export interface HomeDescription {
     __typename: string
     property_id: string
     last_update_date: string
-    last_price_change_date: any
-    last_price_change_amount: any
+    last_price_change_date: unknown
+    last_price_change_amount: unknown
     listing_id: string
     status: string
     href: string
-    days_on_market: any
+    days_on_market: unknown
     list_date: string
     create_date: string
     mortgage: Mortgage
     hoa: Hoa
-    buyers: any
+    buyers: unknown
     description: Description
-    pet_policy: any
     assigned_schools: AssignedSchools
     nearby_schools: NearbySchools
     schools: Schools
     products: Products
     list_price: number
-    list_price_min: any
-    list_price_max: any
+    list_price_min: number
+    list_price_max: number
     price_per_sqft: number
-    community: any
+    community: unknown
     lead_attributes: LeadAttributes
-    flags: Flags
-    provider_url: any
-    source: Source
+    provider_url: unknown
     details: Detail[]
-    open_houses: any
     tax_history: TaxHistory[]
     location: Location
     branding: Branding[]
@@ -50,13 +46,6 @@ export interface HomeDescription {
     last_sold_price: number
     last_sold_date: string
     estimates: Estimates
-    virtual_tours: any
-    videos: any
-    matterport: any
-    terms: any
-    monthly_fees: any
-    one_time_fees: any
-    units: any
 }
 
 export interface Mortgage {
@@ -110,36 +99,36 @@ export interface LoanType2 {
 export interface Hoa {
     __typename: string
     fee: number
-    historic_fee: any
+    historic_fee: unknown
 }
   
 export interface Description {
     __typename: string
     baths_consolidated: string
     baths: number
-    baths_min: any
-    baths_max: any
-    heating: any
-    cooling: any
+    baths_min: number
+    baths_max: number
+    heating: unknown
+    cooling: unknown
     beds: number
-    beds_min: any
-    beds_max: any
-    garage: any
-    garage_min: any
-    garage_max: any
-    pool: any
+    beds_min: number
+    beds_max: number
+    garage: unknown
+    garage_min: unknown
+    garage_max: unknown
+    pool: unknown
     sqft: number
-    sqft_min: any
-    sqft_max: any
-    styles: any
+    sqft_min: number
+    sqft_max: number
+    styles: unknown
     lot_sqft: number
     units: number
     stories: number
     type: string
-    sub_type: any
+    sub_type: string
     text: string
     year_built: number
-    name: any
+    name: unknown
 }
   
 export interface AssignedSchools {
@@ -156,9 +145,9 @@ export interface District {
     __typename: string
     name: string
     id: string
-    phone: any
-    student_count: any
-    grades: any
+    phone: unknown
+    student_count: unknown
+    grades: unknown
 }
   
 export interface NearbySchools {
@@ -239,8 +228,8 @@ export interface LeadAttributes {
     show_contact_an_agent: boolean
     lead_type: string
     show_lead_form: boolean
-    disclaimer_text: any
-    is_tcpa_message_enabled: any
+    disclaimer_text: unknown
+    is_tcpa_message_enabled: unknown
     show_text_leads: boolean
 }
   
@@ -266,22 +255,22 @@ export interface ReadyConnectMortgage {
   
 export interface Flags {
     __typename: string
-    is_contingent: any
+    is_contingent: unknown
     is_garage_present: boolean
-    is_new_construction: any
-    is_pending: any
-    is_short_sale: any
-    is_foreclosure: any
-    is_senior_community: any
-    is_for_rent: any
-    is_deal_available: any
-    is_price_excludes_land: any
-    is_promotion_present: any
-    is_subdivision: any
-    is_plan: any
-    is_price_reduced: any
+    is_new_construction: unknown
+    is_pending: unknown
+    is_short_sale: unknown
+    is_foreclosure: unknown
+    is_senior_community: unknown
+    is_for_rent: unknown
+    is_deal_available: unknown
+    is_price_excludes_land: unknown
+    is_promotion_present: unknown
+    is_subdivision: unknown
+    is_plan: unknown
+    is_price_reduced: unknown
     is_new_listing: boolean
-    is_coming_soon: any
+    is_coming_soon: unknown
 }
   
 export interface Source {
@@ -289,9 +278,9 @@ export interface Source {
     id: string
     disclaimer: Disclaimer
     listing_id: string
-    plan_id: any
-    spec_id: any
-    community_id: any
+    plan_id: string
+    spec_id: unknown
+    community_id: unknown
     name: string
     type: string
     raw: Raw
@@ -300,13 +289,13 @@ export interface Source {
 export interface Disclaimer {
     __typename: string
     text: string
-    href: any
+    href: unknown
 }
   
 export interface Raw {
     __typename: string
-    style: any
-    tax_amount: any
+    style: unknown
+    tax_amount: unknown
 }
   
 export interface Detail {
@@ -343,7 +332,7 @@ export interface Address {
     street_number: string
     street_name: string
     street_suffix: string
-    unit: any
+    unit: unknown
     city: string
     state_code: string
     postal_code: string
@@ -386,12 +375,12 @@ export interface HousingMarket {
 export interface Branding {
     __typename: string
     type: string
-    photo: any
+    photo: string
     name: string
-    phone: any
-    slogan: any
-    accent_color: any
-    link: any
+    phone: unknown
+    slogan: unknown
+    accent_color: unknown
+    link: unknown
 }
   
 export interface ConsumerAdvertiser {
@@ -403,15 +392,15 @@ export interface ConsumerAdvertiser {
     phone?: string
     type: string
     href: string
-    slogan: any
+    slogan: unknown
     photo: Photo
     show_realtor_logo: boolean
-    hours: any
+    hours: unknown
 }
   
 export interface Photo {
     __typename: string
-    href: any
+    href: unknown
 }
   
 export interface Advertiser {
@@ -419,7 +408,7 @@ export interface Advertiser {
     fulfillment_id: string
     name: string
     type: string
-    team_name: any
+    team_name: unknown
     email: string
     href: string
     state_license: string
@@ -441,7 +430,7 @@ export interface Office {
     fulfillment_id: string
     name: string
     href: string
-    photo: any
+    photo: unknown
     email: string
     phones: Phone3[]
 }

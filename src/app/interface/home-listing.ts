@@ -17,7 +17,7 @@ export interface Result {
     __typename: string
     property_id: string
     listing_id: string
-    plan_id: any
+    plan_id: string
     status: string
     photo_count?: number
     branding: Branding[]
@@ -25,12 +25,8 @@ export interface Result {
     open_houses?: OpenHouse[]
     description: Description
     virtual_tours?: VirtualTour[]
-    matterport: boolean
     advertisers: Advertiser[]
-    flags: Flags
-    source: Source
-    pet_policy?: PetPolicy
-    community: any
+    community: unknown
     primary_photo?: PrimaryPhoto
     href: string
     list_price?: number
@@ -49,8 +45,8 @@ export interface Branding {
   __typename: string
   photo?: string
   name?: string
-  phone: any
-  link: any
+  phone: unknown
+  link: unknown
 }
 
 export interface Location {
@@ -78,7 +74,7 @@ export interface Coordinate {
   __typename: string
   lat: number
   lon: number
-  accuracy: any
+  accuracy: unknown
 }
 
 export interface County {
@@ -133,10 +129,10 @@ export interface Flags {
   __typename: string
   is_price_reduced?: boolean
   is_new_construction?: boolean
-  is_foreclosure: any
-  is_plan: any
+  is_foreclosure: unknown
+  is_plan: unknown
   is_new_listing: boolean
-  is_coming_soon: any
+  is_coming_soon: unknown
   is_contingent?: boolean
   is_pending?: boolean
 }
@@ -146,9 +142,9 @@ export interface Source {
   agents?: Agent[]
   id: string
   type: string
-  spec_id: any
-  plan_id: any
-  listing_href: any
+  spec_id: unknown
+  plan_id: unknown
+  listing_href: unknown
   listing_id: string
 }
 
