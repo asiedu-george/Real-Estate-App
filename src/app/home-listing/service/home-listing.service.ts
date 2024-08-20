@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { HomeListingResponse } from '../../interface/home-listing';
 import { ListingDescription } from '../../interface/listing-description';
-import { constants } from '../../constants';
+import { constants } from '../../../environments/constants';
 import { ListingFilters } from '../../interface/listing-filters';
 
 @Injectable({

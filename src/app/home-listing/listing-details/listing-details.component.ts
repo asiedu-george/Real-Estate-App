@@ -10,7 +10,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Result } from '../../interface/home-listing';
-import { constants } from '../../constants';
+import { constants } from '../../../environments/constants';
 import { Detail, HomeDescription } from '../../interface/listing-description';
 
 @Component({
@@ -104,7 +104,7 @@ export class ListingDetailsComponent implements OnInit {
   mapHomeDescriptionToResult(homeDescription: HomeDescription): Result {
     return {
       ...homeDescription,
-      plan_id: null,
+      plan_id: '',
       primary_photo: homeDescription.photos?.[0],
       price_reduced_amount: undefined,
       estimate: undefined,
@@ -112,17 +112,13 @@ export class ListingDetailsComponent implements OnInit {
         ...homeDescription.location,
         address: {
           ...homeDescription.location.address,
-          country: homeDescription.location.county?.__typename || '',
+          country: homeDescription.location.county?.__typename ?? '',
           coordinate: {
             ...homeDescription.location.address.coordinate,
-            accuracy: homeDescription.location.address.coordinate || 0,
+            accuracy: homeDescription.location.address.coordinate ?? 0,
           },
         },
-      },
-      source: {
-        ...homeDescription.source,
-        listing_href: homeDescription.source.listing_id || '',
-      },
+      }
     };
   }
 

@@ -3,7 +3,7 @@ import { inject } from '@angular/core';
 import { AuthService } from '../../auth/service/auth.service';
 import { authEnv } from '../../../environments/environment.development';
 import { jwtDecode } from 'jwt-decode';
-import { constants } from '../../constants';
+import { constants } from '../../../environments/constants';
 import { Store } from '@ngrx/store';
 import { selectLoginToken } from '../../auth/store/login.selectors';
 import { from, switchMap } from 'rxjs';
@@ -52,6 +52,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     } catch(e) {
       authService.logout()
     }
+  } else {
+    authService.logout()
   }
 
   return next(req);

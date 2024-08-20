@@ -1,5 +1,5 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { constants } from '../../constants';
+import { constants } from '../../../environments/constants';
 import { authEnv } from '../../../environments/environment.development';
 import { inject } from '@angular/core';
 import { Store } from '@ngrx/store';
