@@ -14,11 +14,10 @@ export class HomeListingService {
 
   constructor(private http: HttpClient) {}
 
-  getAllListings({status, list_price, type}: Partial<ListingFilters>) {
+  getAllListings({status, type}: Partial<ListingFilters>) {
     const body: ListingFilters = {
       postal_code: constants.postalCode,
       status: status && status.length ? status : constants.status,
-      list_price: list_price,
       type: type
     };
 
