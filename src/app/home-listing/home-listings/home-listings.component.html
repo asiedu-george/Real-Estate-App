@@ -149,7 +149,7 @@
             }
             
             <div *ngIf="listings$ | async as listings" class="listings">
-              @for (list of listings.home_search.results; track list.listing_id) {
+              @for (list of listings.home_search.results; track list.property_id) {
                 <ng-container *ngIf="list.primary_photo?.href">
                   <app-listing-card [listing]="list"></app-listing-card>
                 </ng-container>
