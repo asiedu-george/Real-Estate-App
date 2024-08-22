@@ -9,6 +9,7 @@ const readEnv = () => {
     });
 
     const envConfigFileProd = `export const environment = {
+        production: true,
         rapidApiUrl: ${process.env['rapidApiUrl']}
         authUrl: ${process.env['authUrl']}
         apnKey: ${process.env['apnKey']}
@@ -16,7 +17,16 @@ const readEnv = () => {
         rapidApiHost: ${process.env['rapidApiHost']}
     }`;
 
-    writeFile(targetPathDev, envConfigFileProd, () => {
+    const envConfigFileDev = `export const environment = {
+        production: false,
+        rapidApiUrl: ${process.env['rapidApiUrl']}
+        authUrl: ${process.env['authUrl']}
+        apnKey: ${process.env['apnKey']}
+        rapidApiKey: ${process.env['rapidApiKey']}
+        rapidApiHost: ${process.env['rapidApiHost']}
+    }`;
+
+    writeFile(targetPathDev, envConfigFileDev, () => {
         console.log('Development')
     })
 
