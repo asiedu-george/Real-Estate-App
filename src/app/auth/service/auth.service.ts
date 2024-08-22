@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
-import { authEnv } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { Login, LoginResponse } from '../../interface/login';
 import { Register, RegisterResponse } from '../../interface/register';
 import { UserProfile } from '../../interface/user-profile';
@@ -15,7 +15,7 @@ import { selectRefreshToken } from '../store/login.selectors';
   providedIn: 'root'
 })
 export class AuthService {
-  protected authUrl: string = authEnv.baseUrl;
+  protected authUrl: string = environment.authUrl;
   private readonly token = this.store.selectSignal(selectRefreshToken)
 
   constructor(

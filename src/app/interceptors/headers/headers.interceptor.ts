@@ -1,12 +1,11 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { constants } from '../../../environments/constants';
-import { authEnv } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectRefreshToken } from '../../auth/store/login.selectors';
 
 export const headersInterceptor: HttpInterceptorFn = (req, next) => {
-  const authApi = authEnv.baseUrl
+  const authApi = environment.authUrl
   const store = inject(Store)
   const token = store.selectSignal(selectRefreshToken)
 
@@ -14,7 +13,7 @@ export const headersInterceptor: HttpInterceptorFn = (req, next) => {
     const modifiedRequest = req.clone({
       setHeaders: {
         'Authorization': `Bearer ${token()}`,
-        'X-APN': constants.apnKey
+        'X-APN': environment.apnKey
       }
     })
     return next(modifiedRequest);

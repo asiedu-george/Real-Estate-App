@@ -4,7 +4,7 @@ import { AuthService } from "../service/auth.service";
 import { login, loginFailure, loginSuccess, logout } from "./login.actions";
 import { catchError, map, mergeMap, of } from "rxjs";
 import { NgToastService } from "ng-angular-popup";
-import { constants } from "../../../environments/constants";
+import { constants } from "../../utils/constants";
 import { Router } from "@angular/router";
 
 @Injectable()

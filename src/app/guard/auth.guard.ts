@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { LoginSate } from '../home-listing/store/state/state';
 import { selectLoginToken } from '../auth/store/login.selectors';
 import { map, take } from 'rxjs';
-import { constants } from '../../environments/constants';
+import { constants } from '../utils/constants';
 
 const getDependencies = () => {
     return {

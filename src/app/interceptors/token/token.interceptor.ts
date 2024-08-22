@@ -1,9 +1,8 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from '../../auth/service/auth.service';
-import { authEnv } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { jwtDecode } from 'jwt-decode';
-import { constants } from '../../../environments/constants';
 import { Store } from '@ngrx/store';
 import { selectLoginToken } from '../../auth/store/login.selectors';
 import { from, switchMap } from 'rxjs';
@@ -12,7 +11,7 @@ import { loginSuccess, logout } from '../../auth/store/login.actions';
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService)
   const store = inject(Store)
-  const authUrl = authEnv.baseUrl
+  const authUrl = environment.authUrl
   const token = store.selectSignal(selectLoginToken)
 
   const refreshTokenUrl = `${authUrl}user/refresh-token`
@@ -34,7 +33,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
             const reqCLone = req.clone({
               setHeaders: {
                 'Authorization': `Bearer ${newToken}`,
-                'X-APN': constants.apnKey,
+                'X-APN': environment.apnKey,
               }
             })
             return next(reqCLone)
@@ -44,7 +43,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         const reqClone = req.clone({
           setHeaders: {
             'Authorization': `Bearer ${token()}`,
-            'X-APN': constants.apnKey
+            'X-APN': environment.apnKey
           }
         })
         return next(reqClone)

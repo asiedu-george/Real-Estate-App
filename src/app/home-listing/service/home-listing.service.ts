@@ -1,16 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { HomeListingResponse } from '../../interface/home-listing';
 import { ListingDescription } from '../../interface/listing-description';
-import { constants } from '../../../environments/constants';
+import { constants } from '../../utils/constants';
 import { ListingFilters } from '../../interface/listing-filters';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeListingService {
-  protected rapidApi = environment.baseUrl
+  protected rapidApi = environment.rapidApiUrl
 
   constructor(private http: HttpClient) {}
 

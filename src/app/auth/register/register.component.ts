@@ -8,7 +8,7 @@ import { AuthService } from '../service/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgToastService } from 'ng-angular-popup';
 import { Router } from '@angular/router';
-import { constants } from '../../../environments/constants';
+import { constants } from '../../utils/constants';
 
 @Component({
   selector: 'app-register',
@@ -46,16 +46,24 @@ export class RegisterComponent {
     this.authService.register(formData).subscribe({
       next: (response) => {
         this.loading = false
-        this.toast.success(response.message, constants.success, constants.spinnerDuration)
+        this.toast.success(
+          response.message, 
+          constants.success, 
+          constants.spinnerDuration
+        )
         this.registerForm.reset()
         setTimeout(() => {
           this.spinner.hide()
           this.router.navigateByUrl('/auth/login')
         }, 3000)
       },
-      error: (err) => {
+      error: () => {
         this.loading = false
-        this.toast.danger(err.error, constants.error, constants.spinnerDuration)
+        this.toast.danger(
+          constants.registerError, 
+          constants.error, 
+          constants.spinnerDuration
+        )
         this.spinner.hide()
       }
     })

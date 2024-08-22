@@ -10,7 +10,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Result } from '../../interface/home-listing';
-import { constants } from '../../../environments/constants';
+import { constants } from '../../utils/constants';
 import { Detail, HomeDescription } from '../../interface/listing-description';
 
 @Component({
@@ -44,14 +44,13 @@ export class ListingDetailsComponent implements OnInit {
         this.fetchListingDescription(propertyId);
       }
     });
-
+  
     this.loadRecentlyViewedListings();
-
+  
     this.details$.subscribe((listing) => {
       if (listing) {
-        this.addToRecentlyViewedListings(
-          this.mapHomeDescriptionToResult(listing.home)
-        );
+        const mappedListing = this.mapHomeDescriptionToResult(listing.home);
+        this.addToRecentlyViewedListings(mappedListing);
         this.filterFeatures(listing.home.details);
       }
     });
@@ -89,9 +88,11 @@ export class ListingDetailsComponent implements OnInit {
 
   addToRecentlyViewedListings(listing: Result): void {
     const maxLength = constants.maxLength;
+
     this.recentlyViewedListings = this.recentlyViewedListings.filter(
       (list) => list.property_id !== listing.property_id
     );
+    
     this.recentlyViewedListings.unshift(listing);
 
     if (this.recentlyViewedListings.length > maxLength) {
@@ -104,6 +105,7 @@ export class ListingDetailsComponent implements OnInit {
   mapHomeDescriptionToResult(homeDescription: HomeDescription): Result {
     return {
       ...homeDescription,
+      property_id: homeDescription.property_id,
       plan_id: '',
       primary_photo: homeDescription.photos?.[0],
       price_reduced_amount: undefined,
