@@ -6,8 +6,8 @@
             <input 
                 type="text"
                 placeholder="Neighborhood, city, street name"
-                (keyup)="onSearch($event)"
                 [(ngModel)]="search"
+                (keyup)="onSearch()"
             >
             <img ngSrc="search.svg" width="20" height="20" alt="search">
         </div>
@@ -149,13 +149,13 @@
             }
             
             <div *ngIf="listings$ | async as listings" class="listings">
-              @for (list of listings.home_search.results; track list.property_id) {
+              @for (list of listings.home_search.results; track list.listing_id) {
                 <ng-container *ngIf="list.primary_photo?.href">
                   <app-listing-card [listing]="list"></app-listing-card>
                 </ng-container>
               }
             </div>
-          </div>
+        </div>
     </div>
 </div>
 <app-footer/>
