@@ -43,7 +43,7 @@ Users should be able to:
 ### Project Links
 
 - Solution URL: [Just Home App](https://github.com/asiedu-george/Real-Estate-App)
-- Deployed Site URL: [Just Home App](https://real-estate-app-orpin-xi.vercel.app/)
+- Deployed Site URL: [Just Home App](https://just-home-george-app.vercel.app/)
 
 ## My Processes
 
