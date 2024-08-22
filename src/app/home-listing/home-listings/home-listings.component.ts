@@ -6,7 +6,7 @@ import * as HomeListingsAction from '../store/actions/actions'
 import { selectIsLoading, SelectError, selectListings } from '../store/selectors/selectors';
 import { HomeType, ListingFilters, Status } from '../../interface/listing-filters';
 import { HomeData } from '../../interface/home-listing';
-import { constants } from '../../constants';
+import { constants } from '../../../environments/constants';
 @Component({
   selector: 'app-home-listings',
   templateUrl: './home-listings.component.html',

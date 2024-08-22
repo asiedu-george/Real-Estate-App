@@ -31,10 +31,10 @@
                 >
                 <div 
                     class="error"
-                    *ngIf="registerForm.get('first_name')?.invalid && (registerForm.get('first_name')?.touched || registerForm.get('first_name')?.dirty)"
+                    *ngIf="userFirstName?.invalid && (userFirstName?.touched || userFirstName?.dirty)"
                 >
-                    <div *ngIf="registerForm.get('first_name')?.errors?.['required']">first name is required</div>
-                    <div *ngIf="registerForm.get('first_name')?.errors?.['invalidName']">must contain only alphabets</div>
+                    <div *ngIf="userFirstName?.errors?.['required']">first name is required</div>
+                    <div *ngIf="userFirstName?.errors?.['invalidName']">must contain only alphabets</div>
                 </div>
             </div>
             <div class="form-control">
@@ -48,10 +48,10 @@
                 >
                 <div 
                     class="error"
-                    *ngIf="registerForm.get('last_name')?.invalid && (registerForm.get('last_name')?.touched || registerForm.get('last_name')?.dirty)"
+                    *ngIf="userLastName?.invalid && (userLastName?.touched || userLastName?.dirty)"
                 >
-                    <div *ngIf="registerForm.get('last_name')?.errors?.['required']">last name is required</div>
-                    <div *ngIf="registerForm.get('last_name')?.errors?.['invalidName']">must contain only alphabets</div>
+                    <div *ngIf="userLastName?.errors?.['required']">last name is required</div>
+                    <div *ngIf="userLastName?.errors?.['invalidName']">must contain only alphabets</div>
                 </div>
             </div>
             <div class="form-control">
@@ -65,11 +65,11 @@
                 >
                 <div 
                     class="error"
-                    *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)"
+                    *ngIf="userEmail?.invalid && (userEmail?.touched || userEmail?.dirty)"
                 >
-                    <div *ngIf="registerForm.get('email')?.errors?.['required']">email is required</div>
-                    <div *ngIf="registerForm.get('email')?.errors?.['invalidEmail']">invalid email format</div>
-                    <div *ngIf="registerForm.get('email')?.errors?.['invalidDomain']">email domain is not allowed</div>
+                    <div *ngIf="userEmail?.errors?.['required']">email is required</div>
+                    <div *ngIf="userEmail?.errors?.['invalidEmail']">invalid email format</div>
+                    <div *ngIf="userEmail?.errors?.['invalidDomain']">email domain is not allowed</div>
                 </div>
             </div>
             <div class="form-control passsword">
@@ -86,10 +86,10 @@
                 </div>
                 <div 
                     class="error"
-                    *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)"
+                    *ngIf="userPassword?.invalid && (userPassword?.touched || userPassword?.dirty)"
                 >
-                    <div *ngIf="registerForm.get('password')?.errors?.['required']">password is required</div>
-                    <div *ngIf="registerForm.get('password')?.errors?.['invalidPassword']">password is not strong enough</div>
+                    <div *ngIf="userPassword?.errors?.['required']">password is required</div>
+                    <div *ngIf="userPassword?.errors?.['invalidPassword']">password is not strong enough</div>
                 </div>
             </div>
             <button type="submit" [disabled]="registerForm.invalid || loading">Register</button>

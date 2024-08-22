@@ -5,35 +5,36 @@
     height: auto;
     display: flex;
     flex-direction: column;
-    background-color: $white;
+    background-color: var(--background-color);
 
     .filter-container {
         @include flex-center;
         gap: 1rem;
         width: 100%;
         padding: 1rem 3rem;
-        background-color: $white;
+        background-color: var(--background-color);
         box-shadow: 0 2px 2px rgba(0,0,0,0.1);
         z-index: 1;
 
         .search {
             @include justify-between;
             padding: 0 0.875rem;
-            border: 1px solid $secondary;
+            border: 1px solid var(--border);
             border-radius: 0.375rem;
             width: 35%;
             height: 2.5rem;
 
             &:focus-within, &:hover {
-                border: 1px solid $primary;
+                border: 1px solid var(--btn-color);
             }
 
             input {
                 width: 95%;
                 height: 100%;
                 border: none;
-                color: $primary;
-                caret-color: $primary;
+                background-color: inherit !important;
+                color: var(--color);
+                caret-color: var(--btn-color);
                 font-size: 1rem;
 
                 &:focus {
@@ -44,19 +45,25 @@
                     font-size: 0.875rem;
                 }
             }
+
+            img {
+                filter: var(--filter);
+            }
         }
 
         .status {
             width: 9%;
             height: 2.5rem;
-            border: 1px solid $secondary;
+            border: 1px solid var(--border);
             border-radius: 0.313rem;
-            background-color: $white;
-            color: $primary;
+            background-color: var(--background-color);
+            color: var(--color);
             cursor: pointer;
 
             &:hover {
-                background-color: $header;
+                background-color: var(--status-hover);
+                color: var(--status-hover-color);
+                border: 1px solid var(--btn-border);
             }
 
             .status-content {
@@ -65,6 +72,11 @@
                 
                 p {
                     font-weight: 500;
+                    color: var(--color);
+                }
+
+                img {
+                    filter: var(--filter);
                 }
             }
 
@@ -73,23 +85,22 @@
                 height: auto;
                 border: none;
                 border-radius: 0.375rem;
-                background-color: $white;
-                display: flex;
-                flex-direction: column;
+                background-color: var(--background-color);
+                @include flex-column;
                 gap: 0.875rem;
                 margin-top: 0.625rem;
-                box-shadow: 0 3px 3px rgba(0,0,0,0.1);
+                box-shadow: var(--box-shadow);
 
                 h4 {
                     font-weight: 500;
                     font-size: 1rem;    
-                    color: $primary;
+                    color: var(--color);
                 }
 
                 h5 {
                     font-weight: 400;
                     font-size: 1rem;
-                    color: $secondary;
+                    color: var(--color);
                 }
 
                 .btn {
@@ -98,19 +109,20 @@
 
                     .apply-btn {
                         width: 100%;
-                        color: $white;
+                        color: var(--color);
                         padding: 0.625rem 1rem;
-                        background-color: $primary;
+                        background-color: var(--btn-color);
                         transition: .3s ease-in;
                         text-align: center;
                         font-weight: 500;
                         border: none;
                         border-radius: 0.313rem;
+                        cursor: pointer;
 
                         &:hover {
-                            background-color: $white;
-                            color: $primary;
-                            border: 1px solid $primary;
+                            background-color: var(--btn-hover);
+                            color: var(--color);
+                            border: 1px solid var(--btn-border);
                         }
                     }
                 }
@@ -125,77 +137,18 @@
                 span {
                     @include flex-center;
                     gap: 0.625rem 1rem;
-                }
-            }
-        }
 
-        .price {
-            .price-dropdown {
-                width: 18.75rem;
-
-                h4 {
-                    background-color: #ededed;
-                    padding: 0.625rem 1rem;
-                }
-
-                .range {
-                    @include justify-between;
-                    padding: 0.625rem 1rem;
-
-                    span {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 0.625rem;
-
-                        h5 {
-                            font-weight: 500;
-                        }
-
-                        select {
-                            width: 100%;
-                            padding: 0.625rem 1rem;
-                            border: 1px solid $secondary;
-                            border-radius: 0.313rem;
-                        }
+                    h5 {
+                        color: var(--color);
                     }
 
-                    h6 {
-                        font-weight: 500;
-                        font-size: 1.2rem;
-                    }
-                }
-            }
-        }
-
-        .bed-bath {
-            width: 12%;
-
-            .bed-bath-dropdown {
-                width: 18.75rem;
-
-                h4 {
-                    background-color: #ededed;
-                    padding: 0.625rem 1rem;
-                }
-
-                .bed-num {
-                    padding: 0.625rem 1rem;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 0.5rem;
-
-                    .item {
-                        @include flex-center;
-                        width: 100%;
-
-                        span {
-                            width: 20%;
-                            border: 1px solid $primary;
-                            padding: 0.625rem;
-                            text-align: center;
-                            color: $primary;
-                            font-size: 1rem;
-                        }
+                    input[type="checkbox"] {
+                        height: 1.25rem;
+                        width: 1.25rem;
+                        background-color: var(--span-color);
+                        border: 0.313rem;
+                        cursor: pointer;
+                        border-radius: 0.375rem;
                     }
                 }
             }
@@ -209,19 +162,31 @@
                     width: 100%;
 
                     h4 {
-                        background-color: #ededed;
+                        color: var(--color);
                         padding: 0.625rem 1rem;
                     }
 
                     .checkbox {
-                        display: flex;
-                        flex-direction: column;
+                        @include flex-column;
                         gap: 0.875rem;
                         padding: 0.625rem 1rem;
 
                         span {
                             @include flex-center;
                             gap: 0.625rem;
+
+                            input[type="checkbox"] {
+                                height: 1.25rem;
+                                width: 1.25rem;
+                                background-color: var(--span-color);
+                                border: 0.313rem;
+                                cursor: pointer;
+                                border-radius: 0.375rem;
+                            }
+
+                            h5 {
+                                color: var(--color);
+                            }
                         }
                     }
                 }
@@ -231,23 +196,26 @@
         .search-btn {
             width: 10%;
             height: 2.5rem;
+            padding: 0.625rem 1rem;
+            background-color: var(--btn-color);
+            color: $white;
+            transition: .3s ease-in;
+            text-align: center;
+            font-weight: 500;
             border: none;
             border-radius: 0.313rem;
-            background-color: $primary;
-            color: $white;
-            font-size: 1rem;
             cursor: pointer;
 
             &:hover {
-                background-color: $white;
-                color: $primary;
-                border: 1px solid $primary;
+                background-color: var(--btn-hover);
+                color: var(--color);
+                border: 1px solid var(--btn-border);
             }
         }
     }
 
     .outlet {
-        margin-top: 1.875rem;
+        margin-top: 3.75rem;
 
         .properties {
             max-width: 100%;
@@ -255,7 +223,7 @@
             padding: 1rem 3rem;
         
             h2 {
-                color: $primary;
+                color: var(--color);
                 font-size: 1.75rem;
                 margin-bottom: 2rem;
             }
@@ -267,8 +235,7 @@
         
             .listings {
                 width: 100%;
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+                @include grid;
                 gap: 1rem;
             }
         }

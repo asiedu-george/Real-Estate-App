@@ -43,4 +43,12 @@ export class LoginComponent {
   toggleShowPassword(): void {
     this.showPassword = !this.showPassword
   }
+
+  get userEmail() {
+    return this.loginForm.get('email')
+  }
+
+  get userPassword() {
+    return this.loginForm.get('password')
+  }
 }

@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="home-type status">
-            <div (click)="toggleDropdown('homeType')" class="bed-bath-content status-content">
+            <div (click)="toggleDropdown('homeType')" class="status-content">
                 <p>Home Type</p>
                 <img ngSrc="chevron-down.svg" width="25" height="25" alt="chevron-down" priority>
             </div>
@@ -149,7 +149,7 @@
             }
             
             <div *ngIf="listings$ | async as listings" class="listings">
-              @for (list of listings.home_search.results; track list.listing_id) {
+              @for (list of listings.home_search.results; track list.property_id) {
                 <ng-container *ngIf="list.primary_photo?.href">
                   <app-listing-card [listing]="list"></app-listing-card>
                 </ng-container>

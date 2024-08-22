@@ -3,11 +3,11 @@ import { inject } from '@angular/core';
 import { AuthService } from '../../auth/service/auth.service';
 import { authEnv } from '../../../environments/environment.development';
 import { jwtDecode } from 'jwt-decode';
-import { constants } from '../../constants';
+import { constants } from '../../../environments/constants';
 import { Store } from '@ngrx/store';
 import { selectLoginToken } from '../../auth/store/login.selectors';
 import { from, switchMap } from 'rxjs';
-import { loginSuccess } from '../../auth/store/login.actions';
+import { loginSuccess, logout } from '../../auth/store/login.actions';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService)
@@ -16,7 +16,9 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token = store.selectSignal(selectLoginToken)
 
   const refreshTokenUrl = `${authUrl}user/refresh-token`
-  if(req.url === refreshTokenUrl) return next(req)
+  if(req.url.startsWith(refreshTokenUrl)) {
+    return next(req)
+  }
 
   if(token()) {
     try {
@@ -48,8 +50,10 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         return next(reqClone)
       }
     } catch(e) {
-      authService.logout()
+      store.dispatch(logout())
     }
+  } else {
+    store.dispatch(logout())
   }
 
   return next(req);

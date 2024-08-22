@@ -1,5 +1,5 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
-import { constants } from '../../constants';
+import { constants } from '../../../environments/constants';
 import { environment } from '../../../environments/environment.development';
 import { inject } from '@angular/core';
 import { AuthService } from '../../auth/service/auth.service';

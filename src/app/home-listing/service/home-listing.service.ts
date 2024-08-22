@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { HomeListingResponse } from '../../interface/home-listing';
 import { ListingDescription } from '../../interface/listing-description';
-import { constants } from '../../constants';
+import { constants } from '../../../environments/constants';
 import { ListingFilters } from '../../interface/listing-filters';
 
 @Injectable({
@@ -14,11 +14,10 @@ export class HomeListingService {
 
   constructor(private http: HttpClient) {}
 
-  getAllListings({status, list_price, type}: Partial<ListingFilters>) {
+  getAllListings({status, type}: Partial<ListingFilters>) {
     const body: ListingFilters = {
       postal_code: constants.postalCode,
       status: status && status.length ? status : constants.status,
-      list_price: list_price,
       type: type
     };
 

@@ -93,6 +93,7 @@
                 h4 {
                     font-weight: 400;
                     font-size: 0.875rem;
+                    color: var(--color);
                 }
             }
 
@@ -109,6 +110,10 @@
                         font-size: 1.5rem;
                         color: $orange;
                     }
+
+                    p {
+                        color: var(--color);
+                    }
                 }
 
                 .baths {
@@ -122,17 +127,20 @@
                         h2 {
                             font-size: 1.125rem;
                             font-size: 700;
+                            color: var(--color);
                         }
 
                         p {
                             font-size: 0.875rem;
                             font-weight: 400;
+                            color: var(--color);
                         }
                     }
                 }
 
                 .location {
                     font-weight: 400;
+                    color: var(--color);
                 }
 
                 .history {
@@ -150,11 +158,13 @@
                                 font-weight: 600;
                                 font-size: 1.125rem;
                                 margin-bottom: 0.5rem;
+                                color: var(--color);
                             }
 
                             p {
                                 font-size: 0.875rem;
                                 font-weight: 400;
+                                color: var(--color);
                             }
                         }
                     }
@@ -174,23 +184,27 @@
                 h2 {
                     font-size: 1.25rem;
                     font-weight: 600;
+                    color: var(--color);
                 }
 
                 h6 {
                     font-weight: 400;
                     font-size: 1rem;
+                    color: var(--color);
                 }
 
                 p {
                     line-height: 1.875rem;
                     font-weight: 400;
+                    color: var(--color);
                 }
 
                 button {
                     @include show-more;
+                    color: var(--color);
 
                     &.active, &:hover {
-                        color: $secondary;
+                        color: var(--btn-color);
                         opacity: 0.7;
                     }
                 }
@@ -214,15 +228,17 @@
 
                         h4 {
                             font-size: 1.125rem;
+                            color: var(--color);
                         }
 
                         ul li {
                             list-style: disc;
                             list-style-position: inside;
                             margin-bottom: 0.5rem;
+                            color: var(--color);
                             
                             &::marker {
-                                color: $primary;
+                                color: var(--btn-color);
                                 font-size: 1rem;
                             }
                         }
@@ -238,16 +254,17 @@
                 h2 {
                     font-size: 1.125rem;
                     font-weight: 600;
+                    color: var(--color);
                 }
 
                 table {
                     width: 100%;
 
                     thead {
-                        background-color: $header;
+                        background-color: var(--even);
 
                         tr th {
-                            color: $primary;
+                            color: var(--color);
                             font-weight: 600;
                             padding: 1.25rem;
                             text-align: left;
@@ -260,11 +277,11 @@
 
                         tr {
                             &:nth-child(even) {
-                                background-color: #e8eef8;
+                                background-color: var(--even);
                             }
 
                             td {
-                                color: $secondary;
+                                color: var(--color);
                                 font-weight: 400;
                                 padding: 1.25rem;
                                 font-size: 0.75rem;
@@ -275,9 +292,10 @@
 
                 button {
                     @include show-more;
+                    color: var(--color);
 
                     &.active, &:hover {
-                        color: $secondary;
+                        color: var(--btn-color);
                         opacity: 0.7;
                     }
                 }
@@ -291,6 +309,7 @@
                 h2 {
                     font-size: 1.125rem;
                     font-weight: 600;
+                    color: var(--color);
                 }
 
                 .school {
@@ -299,6 +318,8 @@
 
                     .rating {
                         @include ratings;
+                        background-color: var(--even);
+                        color: var(--color);
 
                         strong {
                             font-weight: 700;
@@ -314,6 +335,7 @@
                             font-size: 1rem;
                             font-weight: 500;
                             text-decoration: underline;
+                            color: var(--color);
                         }
 
                         .info {
@@ -323,6 +345,7 @@
                             p {
                                 font-size: 0.875rem;
                                 padding-right: 0.375rem;
+                                color: var(--color);
                             }
                         }
                     }
@@ -330,9 +353,10 @@
 
                 button {
                     @include show-more;
+                    color: var(--color);
 
                     &.active, &:hover {
-                        color: $secondary;
+                        color: var(--btn-color);
                         opacity: 0.7;
                     }
                 }
@@ -343,11 +367,14 @@
 
                     .rating {
                         @include ratings;
+                        background-color: var(--even);
+                        color: var(--color);
+                    }
 
-                        p {
-                            font-size: 1rem;
-                            font-weight: 400;
-                        }
+                    p {
+                        font-size: 1rem;
+                        font-weight: 400;
+                        color: var(--color);
                     }
                 }
             }
@@ -357,13 +384,14 @@
 
 .recently-viewed {
     width: 100%;
-    padding: 2rem 3rem;
+    padding: 2rem 3rem 3rem;
     margin-top: 2rem;
 
     h2 {
         font-weight: 600;
         font-size: 1.25rem;
         margin-bottom: 1rem;
+        color: var(--color);
     }
 
     .listing-card {

@@ -4,8 +4,8 @@
     @include justify-center;
     max-width: 100%;
     flex-direction: column;
-    padding: 6% 10%;
-    color: $primary;
+    padding: 0 10% 6%;
+    color: var(--color);
     gap: 2rem;
 
     .header {
@@ -23,9 +23,9 @@
     }
 
     .card {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1rem;
+        width: 100%;
+        @include grid;
+        gap: 1.25rem;
     }
 
     .listing-btn {
@@ -49,6 +49,7 @@
 
         img {
             width: 0.875rem;
+            filter: var(--filter);
         }
     }
 }
