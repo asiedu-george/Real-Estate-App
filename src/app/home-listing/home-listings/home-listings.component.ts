@@ -84,7 +84,6 @@ export class HomeListingsComponent implements OnInit {
   }
 
   onSearch(): void {
-    // const inputElement = event.target as HTMLInputElement;
     const searchValue = this.search.toLowerCase();
   
     if (this.allListings) {
@@ -111,7 +110,7 @@ export class HomeListingsComponent implements OnInit {
     ) ?? [];
   }
   
-  private isMatch(listing: any, searchValue: string): boolean {
+  private isMatch(listing: Result, searchValue: string): boolean {
     const { state, street_name, city, state_code } = listing.location.address;
     return [state, street_name, city, state_code].some(field =>
       field.toLowerCase().includes(searchValue)
