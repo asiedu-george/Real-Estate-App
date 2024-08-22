@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "npm run config && ng build",
-    "config": "ts-node src/environments/read-file.ts",
+    "config": "ts-node src/app/utils/read-file.ts",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:watch": "jest --watch",
