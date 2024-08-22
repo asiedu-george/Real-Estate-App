@@ -11,7 +11,7 @@ export const useThemeSwitcher = (key: string, initialValue: string) => {
 
     function storageHandler(e: StorageEvent): void {
         if(e.key === key) {
-            const newValue: string = e.newValue !== null ? e.newValue : ''
+            const newValue: string = e.newValue ?? '';
             value.set(newValue)
             document.body.setAttribute('data-theme', newValue);
         }

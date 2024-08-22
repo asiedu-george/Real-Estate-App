@@ -7,13 +7,6 @@
             Explore these top listings to find your dream home today.
         </p>
    </div>
-   <div class="card" *ngIf="listings$ | async as listings">
-        @for (list of listings.home_search.results | slice:0:8; track list.property_id) {
-            <ng-container *ngIf="list.primary_photo?.href">
-                <app-listing-card [listing]="list"></app-listing-card>
-            </ng-container>
-        }
-   </div>
    <button routerLink="/listings" type="button" class="listing-btn">
         See All Listing
         <img src="black-right-arrow.svg" alt="right-arrow">

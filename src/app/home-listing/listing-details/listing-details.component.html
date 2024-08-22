@@ -216,7 +216,10 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <button *ngIf="details.home.tax_history.length > 8" type="button" (click)="toggleShowMore()">
+                            <button 
+                                *ngIf="details.home.tax_history.length > 8" 
+                                type="button" (click)="toggleShowMore()"
+                            >
                                 {{ showMore ? 'Show Less' : 'Show More' }}
                             </button>
                        </div>

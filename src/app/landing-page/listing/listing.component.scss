@@ -22,12 +22,6 @@
         }
     }
 
-    .card {
-        width: 100%;
-        @include grid;
-        gap: 1.25rem;
-    }
-
     .listing-btn {
         @include flex-center;
         gap: 0.625rem;

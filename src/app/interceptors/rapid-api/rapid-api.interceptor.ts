@@ -1,13 +1,13 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
-import { constants } from '../../../environments/constants';
-import { environment } from '../../../environments/environment.development';
+import { constants } from '../../utils/constants';
+import { environment } from '../../../environments/environment';
 import { inject } from '@angular/core';
 import { AuthService } from '../../auth/service/auth.service';
 import { catchError, switchMap, throwError } from 'rxjs';
 import { NgToastService } from 'ng-angular-popup';
 
 export const rapidApiInterceptor: HttpInterceptorFn = (req, next) => {
-  const rapidAPI = environment.baseUrl
+  const rapidAPI = environment.rapidApiUrl
   const authService = inject(AuthService)
   const toast = inject(NgToastService)
 
@@ -16,8 +16,8 @@ export const rapidApiInterceptor: HttpInterceptorFn = (req, next) => {
       switchMap(() => {
         const rapidAPiRequest = req.clone({
           setHeaders: {
-            'x-rapidapi-key': constants.rapidApiKey,
-            'x-rapidapi-host': constants.rapidApiHost
+            'x-rapidapi-key': environment.rapidApiKey,
+            'x-rapidapi-host': environment.rapidApiHost
           }
         })
         return next(rapidAPiRequest);

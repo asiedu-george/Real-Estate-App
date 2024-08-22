@@ -5,8 +5,8 @@ import { HomeListingState } from '../store/state/state';
 import * as HomeListingsAction from '../store/actions/actions'
 import { selectIsLoading, SelectError, selectListings } from '../store/selectors/selectors';
 import { HomeType, ListingFilters, Status } from '../../interface/listing-filters';
-import { HomeData } from '../../interface/home-listing';
-import { constants } from '../../../environments/constants';
+import { HomeData, Result } from '../../interface/home-listing';
+import { constants } from '../../utils/constants';
 @Component({
   selector: 'app-home-listings',
   templateUrl: './home-listings.component.html',
@@ -83,28 +83,41 @@ export class HomeListingsComponent implements OnInit {
     this.status = this.status.filter((status) => status !== newStatus)
   }
 
-  onSearch(event: Event): void {
-    const inputElement = event.target as HTMLInputElement;
-    const searchValue = inputElement.value.toLowerCase();
+  onSearch(): void {
+    // const inputElement = event.target as HTMLInputElement;
+    const searchValue = this.search.toLowerCase();
   
     if (this.allListings) {
-      const filteredListings = this.allListings.home_search.results.filter(listing =>
-        listing.location.address.state.toLowerCase().includes(searchValue) ||
-        listing.location.address.street_name.toLowerCase().includes(searchValue) ||
-        listing.location.address.city.toLowerCase().includes(searchValue) ||
-        listing.location.address.state_code.toLowerCase().includes(searchValue)
-      );
+      const filteredListings = searchValue
+        ? this.filterListings(searchValue)
+        : this.allListings.home_search.results;
   
       const filteredHomeSearch = {
         ...this.allListings.home_search,
         results: filteredListings,
       };
   
-      this.store.dispatch(HomeListingsAction.homeListingSuccess({ lists: { ...this.allListings, home_search: filteredHomeSearch } }));
+      this.store.dispatch(
+        HomeListingsAction.homeListingSuccess({
+          lists: { ...this.allListings, home_search: filteredHomeSearch },
+        })
+      );
     }
   }
   
-
+  private filterListings(searchValue: string): Result[] {
+    return this.allListings?.home_search.results.filter(listing =>
+      this.isMatch(listing, searchValue)
+    ) ?? [];
+  }
+  
+  private isMatch(listing: any, searchValue: string): boolean {
+    const { state, street_name, city, state_code } = listing.location.address;
+    return [state, street_name, city, state_code].some(field =>
+      field.toLowerCase().includes(searchValue)
+    );
+  }
+  
   @HostListener('window:scroll', ['$event'])
   onScroll(): void {
     const header = document.getElementById('filter')
