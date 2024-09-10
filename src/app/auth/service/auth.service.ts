@@ -16,7 +16,7 @@ import { selectRefreshToken } from '../store/login.selectors';
 })
 export class AuthService {
   protected authUrl: string = environment.authUrl;
-  public token = this.store.selectSignal(selectRefreshToken)
+  private readonly token = this.store.selectSignal(selectRefreshToken)
 
   constructor(
     private http: HttpClient, 

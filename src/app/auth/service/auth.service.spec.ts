@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
-import { provideStore } from '@ngrx/store';
+import { provideMockStore  } from '@ngrx/store/testing';
 import { Register } from '../../interface/register';
 import { environment } from '../../../environments/environment';
 import { Login } from '../../interface/login';
@@ -12,6 +12,13 @@ import { UserProfile } from '../../interface/user-profile';
 describe('AuthService', () => {
   let service: AuthService;
   let httpTesting: HttpTestingController;
+  const initialState = {
+    login: {
+      loggedIn: {
+        refresh_token: 'mock-refresh-token'
+      }
+    }
+  }
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -20,7 +27,7 @@ describe('AuthService', () => {
         provideHttpClient(),
         provideHttpClientTesting(),
         provideRouter([]),
-        provideStore()
+        provideMockStore({initialState})
       ]
     });
     service = TestBed.inject(AuthService);
@@ -85,7 +92,7 @@ describe('AuthService', () => {
   describe('refresh token', () => {
     it('should refresh token', () => {
 
-      jest.spyOn(service, 'token').mockReturnValue('mock-refresh-token')
+      // jest.spyOn(service, 'token').mockReturnValue('mock-refresh-token')
 
       service.refreshToken().subscribe((token) => {
         expect(token).toEqual({
